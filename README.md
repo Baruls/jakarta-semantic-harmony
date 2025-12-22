@@ -193,15 +193,7 @@ Contributions are welcome! Please:
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-## 👥 Development Team
-
-**Kelompok 1**
-- Member 1
-- Member 2
-- Member 3
-- Member 4
-
-## 📞 Contact
+##  Contact
 
 Project Link: [https://github.com/Baruls/jakarta-semantic-harmony](https://github.com/Baruls/jakarta-semantic-harmony)
 
