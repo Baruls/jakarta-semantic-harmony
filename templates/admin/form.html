@@ -1,0 +1,580 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ 'Edit' if action == 'edit' else 'Tambah' }} Tempat Ibadah - Admin{% endblock %}
+
+{% block content %}
+<section class="admin-section">
+    <div class="form-container">
+        <div class="form-header">
+            <a href="{{ url_for('admin_dashboard') }}" class="btn-back">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <div>
+                <h1>{{ 'Edit' if action == 'edit' else 'Tambah' }} Tempat Ibadah</h1>
+                <p>{{ 'Perbarui informasi tempat ibadah' if action == 'edit' else 'Tambahkan tempat ibadah baru' }}</p>
+            </div>
+        </div>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <form method="POST" class="site-form">
+            <!-- Informasi Dasar -->
+            <div class="form-section">
+                <h3><i class="fas fa-info-circle"></i> Informasi Dasar</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="id">ID (Unik, tanpa spasi) *</label>
+                        <input type="text" id="id" name="id" 
+                               value="{{ site.id if site else '' }}" 
+                               {{ 'readonly' if action == 'edit' else 'required' }}
+                               placeholder="Contoh: MasjidAgungSleman">
+                        <small>ID akan digunakan untuk URL. Hanya huruf dan angka tanpa spasi.</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="nama">Nama Tempat *</label>
+                        <input type="text" id="nama" name="nama" required
+                               value="{{ site.nama if site else '' }}"
+                               placeholder="Contoh: MASJID AGUNG SLEMAN">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tipe">Tipe Bangunan *</label>
+                        <select id="tipe" name="tipe" required>
+                            <option value="">Pilih Tipe</option>
+                            <option value="Mosque" {{ 'selected' if site and site.tipe == 'Mosque' }}>🕌 Masjid</option>
+                            <option value="Church" {{ 'selected' if site and site.tipe == 'Church' }}>⛪ Gereja</option>
+                            <option value="Vihara" {{ 'selected' if site and site.tipe == 'Vihara' }}>🛕 Vihara/Klenteng</option>
+                            <option value="Temple" {{ 'selected' if site and site.tipe == 'Temple' }}>🕉️ Pura</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="agama">Agama *</label>
+                        <select id="agama" name="agama" required>
+                            <option value="">Pilih Agama</option>
+                            <option value="Islam" {{ 'selected' if site and site.agama == 'Islam' }}>Islam</option>
+                            <option value="Katolik" {{ 'selected' if site and site.agama == 'Katolik' }}>Katolik</option>
+                            <option value="KristenProtestan" {{ 'selected' if site and site.agama == 'KristenProtestan' }}>Kristen Protestan</option>
+                            <option value="Buddha" {{ 'selected' if site and site.agama == 'Buddha' }}>Buddha</option>
+                            <option value="Hindu" {{ 'selected' if site and site.agama == 'Hindu' }}>Hindu</option>
+                            <option value="Konghucu" {{ 'selected' if site and site.agama == 'Konghucu' }}>Konghucu</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Lokasi -->
+            <div class="form-section">
+                <h3><i class="fas fa-map-marker-alt"></i> Lokasi</h3>
+                
+                <div class="form-group">
+                    <label for="alamat">Alamat Lengkap *</label>
+                    <input type="text" id="alamat" name="alamat" required
+                           value="{{ site.alamat if site else '' }}"
+                           placeholder="Contoh: Jl. Sisingamangaraja No. 1">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="wilayah">Wilayah *</label>
+                        <select id="wilayah" name="wilayah" required>
+                            <option value="">Pilih Wilayah</option>
+                            <option value="JakartaPusat" {{ 'selected' if site and site.wilayah == 'JakartaPusat' }}>Jakarta Pusat</option>
+                            <option value="JakartaUtara" {{ 'selected' if site and site.wilayah == 'JakartaUtara' }}>Jakarta Utara</option>
+                            <option value="JakartaSelatan" {{ 'selected' if site and site.wilayah == 'JakartaSelatan' }}>Jakarta Selatan</option>
+                            <option value="JakartaBarat" {{ 'selected' if site and site.wilayah == 'JakartaBarat' }}>Jakarta Barat</option>
+                            <option value="JakartaTimur" {{ 'selected' if site and site.wilayah == 'JakartaTimur' }}>Jakarta Timur</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="kecamatan">Kecamatan</label>
+                        <input type="text" id="kecamatan" name="kecamatan"
+                               value="{{ site.kecamatan if site else '' }}"
+                               placeholder="Contoh: KecamatanKebayoranBaru">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="kode_pos">Kode Pos</label>
+                        <input type="text" id="kode_pos" name="kode_pos"
+                               value="{{ site.kode_pos if site else '' }}"
+                               placeholder="Contoh: 12110">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="koordinat">Koordinat (Latitude, Longitude) * <a href="https://www.google.com/maps" target="_blank" class="help-link"><i class="fas fa-external-link-alt"></i> Cari di Google Maps</a></label>
+                    <input type="text" id="koordinat" name="koordinat" required
+                           value="{{ (site.latitude|string + ', ' + site.longitude|string) if site and site.latitude else '' }}"
+                           placeholder="Contoh: -6.234920731352565, 106.79910971785888">
+                    <small><i class="fas fa-info-circle"></i> Copy langsung dari Google Maps (klik kanan → "What's here?" → copy koordinat)</small>
+                </div>
+                
+                <div class="form-group">
+                    <label>Transportasi Terdekat</label>
+                    <div id="transport-list">
+                        {% if site and site.transport_terdekat %}
+                            {% for transport in site.transport_terdekat.split('; ') %}
+                            <div class="transport-input-row">
+                                <input type="text" name="transport_item" value="{{ transport }}" placeholder="Contoh: Stasiun MRT ASEAN">
+                                <button type="button" class="btn-remove-transport" onclick="removeTransport(this)" title="Hapus"><i class="fas fa-times"></i></button>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="transport-input-row">
+                                <input type="text" name="transport_item" placeholder="Contoh: Stasiun MRT ASEAN">
+                                <button type="button" class="btn-remove-transport" onclick="removeTransport(this)" title="Hapus"><i class="fas fa-times"></i></button>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <button type="button" class="btn-add-transport" onclick="addTransport()">
+                        <i class="fas fa-plus"></i> Tambah Transportasi
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Detail -->
+            <div class="form-section">
+                <h3><i class="fas fa-list-alt"></i> Detail</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="jam_buka">Jam Operasional</label>
+                        <input type="text" id="jam_buka" name="jam_buka"
+                               value="{{ site.jam_buka if site else '' }}"
+                               placeholder="Contoh: 04:00 - 22:00 WIB">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="kapasitas">Kapasitas (orang)</label>
+                        <input type="number" id="kapasitas" name="kapasitas"
+                               value="{{ site.kapasitas if site else '' }}"
+                               placeholder="Contoh: 15000">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="luas">Luas Area</label>
+                        <input type="text" id="luas" name="luas"
+                               value="{{ site.luas if site else '' }}"
+                               placeholder="Contoh: 2.5 Hektar">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="arsitek">Arsitek / Pendiri</label>
+                        <input type="text" id="arsitek" name="arsitek"
+                               value="{{ site.arsitek if site else '' }}"
+                               placeholder="Contoh: Friedrich Silaban">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tahun_berdiri">Tahun Berdiri</label>
+                        <input type="number" id="tahun_berdiri" name="tahun_berdiri"
+                               value="{{ site.tahun_berdiri if site else '' }}"
+                               placeholder="Contoh: 1958">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group checkbox-group">
+                        <label>
+                            <input type="checkbox" id="is_heritage" name="is_heritage"
+                                   {{ 'checked' if site and site.is_heritage }}>
+                            <span class="checkmark"></span>
+                            <i class="fas fa-landmark"></i> Cagar Budaya
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="heritage_code">Kode Cagar Budaya</label>
+                        <input type="text" id="heritage_code" name="heritage_code"
+                               value="{{ site.heritage_code if site else '' }}"
+                               placeholder="Contoh: KB000123">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Media & Deskripsi -->
+            <div class="form-section">
+                <h3><i class="fas fa-image"></i> Media & Deskripsi</h3>
+                
+                <div class="form-group">
+                    <label for="gambar_url">URL Gambar *</label>
+                    <input type="text" id="gambar_url" name="gambar_url" required
+                           value="{{ site.gambar_url if site else '' }}"
+                           placeholder="Contoh: /static/images/masjid.jpg atau https://...">
+                    <small>Bisa menggunakan path lokal (/static/images/...) atau URL gambar dari internet</small>
+                </div>
+                
+                {% if site and site.gambar_url %}
+                <div class="image-preview">
+                    <img src="{{ site.gambar_url }}" alt="Preview">
+                </div>
+                {% endif %}
+                
+                <div class="form-group">
+                    <label for="deskripsi">Deskripsi</label>
+                    <textarea id="deskripsi" name="deskripsi" rows="5"
+                              placeholder="Deskripsi lengkap tentang tempat ibadah ini...">{{ site.deskripsi if site else '' }}</textarea>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <a href="{{ url_for('admin_dashboard') }}" class="btn btn-cancel">
+                    <i class="fas fa-times"></i> Batal
+                </a>
+                <button type="submit" class="btn btn-save">
+                    <i class="fas fa-save"></i> {{ 'Simpan Perubahan' if action == 'edit' else 'Tambah Tempat' }}
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<style>
+.admin-section {
+    min-height: 100vh;
+    background: #f5f7fa;
+    padding: 30px;
+}
+
+.form-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.form-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.btn-back {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a3a5c;
+    text-decoration: none;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+}
+
+.btn-back:hover {
+    background: #1a3a5c;
+    color: white;
+}
+
+.form-header h1 {
+    color: #1a3a5c;
+    margin: 0 0 5px;
+}
+
+.form-header p {
+    color: #666;
+    margin: 0;
+}
+
+.site-form {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.form-section {
+    padding: 30px;
+    border-bottom: 1px solid #eee;
+}
+
+.form-section:last-of-type {
+    border-bottom: none;
+}
+
+.form-section h3 {
+    color: #1a3a5c;
+    margin: 0 0 25px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-section h3 i {
+    color: #d4af37;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.help-link {
+    font-weight: normal;
+    font-size: 12px;
+    color: #4285F4;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #1a3a5c;
+    box-shadow: 0 0 0 3px rgba(26, 58, 92, 0.1);
+}
+
+.form-group input[readonly] {
+    background: #f5f5f5;
+    cursor: not-allowed;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 5px;
+    color: #888;
+    font-size: 12px;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.checkbox-group label:hover {
+    border-color: #1a3a5c;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+.checkbox-group input[type="checkbox"]:checked + .checkmark + i {
+    color: #d4af37;
+}
+
+.image-preview {
+    margin-bottom: 20px;
+}
+
+.image-preview img {
+    max-width: 300px;
+    max-height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+}
+
+.form-actions {
+    padding: 25px 30px;
+    background: #f8f9fa;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.btn {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.btn-cancel {
+    background: #e0e0e0;
+    color: #666;
+}
+
+.btn-cancel:hover {
+    background: #d0d0d0;
+}
+
+.btn-save {
+    background: linear-gradient(135deg, #1a3a5c, #2d5a87);
+    color: white;
+}
+
+.btn-save:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(26, 58, 92, 0.4);
+}
+
+.alert {
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.alert-danger {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.alert-success {
+    background: #d4edda;
+    color: #155724;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .btn {
+        justify-content: center;
+    }
+}
+
+/* Transport List Styles */
+.transport-input-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.transport-input-row input {
+    flex: 1;
+}
+
+.btn-remove-transport {
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.btn-remove-transport:hover {
+    background: #c82333;
+}
+
+.btn-add-transport {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    margin-top: 5px;
+}
+
+.btn-add-transport:hover {
+    background: #218838;
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function addTransport() {
+    const list = document.getElementById('transport-list');
+    const row = document.createElement('div');
+    row.className = 'transport-input-row';
+    row.innerHTML = `
+        <input type="text" name="transport_item" placeholder="Contoh: Halte TransJakarta">
+        <button type="button" class="btn-remove-transport" onclick="removeTransport(this)" title="Hapus"><i class="fas fa-times"></i></button>
+    `;
+    list.appendChild(row);
+}
+
+function removeTransport(btn) {
+    const list = document.getElementById('transport-list');
+    if (list.children.length > 1) {
+        btn.parentElement.remove();
+    } else {
+        // Clear the input instead of removing last row
+        btn.parentElement.querySelector('input').value = '';
+    }
+}
+
+// Combine transport items before form submit
+document.querySelector('form').addEventListener('submit', function(e) {
+    const inputs = document.querySelectorAll('input[name="transport_item"]');
+    const values = [];
+    inputs.forEach(input => {
+        if (input.value.trim()) {
+            values.push(input.value.trim());
+        }
+    });
+    
+    // Create hidden field with combined value
+    const hidden = document.createElement('input');
+    hidden.type = 'hidden';
+    hidden.name = 'transport_terdekat';
+    hidden.value = values.join('; ');
+    this.appendChild(hidden);
+});
+</script>
+{% endblock %}

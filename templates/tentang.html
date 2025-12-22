@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block title %}Tentang Kami - Jakarta Semantic Harmony{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <h1>Tentang Website Kami</h1>
+</section>
+
+<section class="about-section">
+    <div class="about-container">
+        <div class="about-content">
+            <h3>Apa itu Jakarta Semantic Harmony?</h3>
+            <p>
+                Jakarta Semantic Harmony merupakan sebuah inisiatif berbasis teknologi yang dirancang untuk memetakan 
+                lanskap keberagaman agama di DKI Jakarta melalui pendekatan Semantic Web. Berbeda dengan basis data 
+                konvensional yang cenderung kaku dan terpisah-pisah, proyek ini membangun sebuah Knowledge Graph 
+                (Graf Pengetahuan) yang dinamis, di mana berbagai entitas keagamaan—mulai dari masjid, gereja, pura, 
+                vihara, klenteng, hingga situs cagar budaya dan acara lintas iman—saling terhubung dalam satu 
+                jaringan data yang terstruktur.
+            </p>
+            <p>
+                Dengan menerapkan prinsip Linked Data, sistem ini memberikan konteks atau 'makna' pada setiap informasi, 
+                sehingga mesin tidak hanya membaca data sebagai teks mentah, tetapi juga memahami hubungan antar entitas 
+                tersebut. Tujuan utamanya adalah menciptakan sebuah jembatan digital yang mampu menampilkan pola-pola 
+                interaksi dan toleransi di Ibu Kota, menjadikan kompleksitas harmoni sosial di Jakarta sebagai data 
+                cerdas yang mudah ditelusuri, dianalisis, dan dipahami oleh siapa saja.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="vision-section">
+    <div class="vision-container">
+        <h2>Visi dan Misi</h2>
+        <div class="vision-grid">
+            <div class="vision-card">
+                <div class="vision-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h3>Visi</h3>
+                <p>Menjadi platform referensi utama dalam pemetaan keberagaman agama di Jakarta berbasis teknologi Semantic Web.</p>
+            </div>
+            <div class="vision-card">
+                <div class="vision-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h3>Misi</h3>
+                <ul>
+                    <li>Membangun Knowledge Graph tempat ibadah di Jakarta</li>
+                    <li>Menyediakan akses informasi yang terstruktur dan mudah dipahami</li>
+                    <li>Mendorong toleransi antar umat beragama</li>
+                    <li>Melestarikan informasi situs cagar budaya keagamaan</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="team-section">
+    <div class="team-container">
+        <h2>Tim Kami</h2>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-avatar">
+                    <img src="{{ url_for('static', filename='images/aira.png') }}" alt="Aira Putri Deninta" onerror="this.src='https://ui-avatars.com/api/?name=Aira+Putri&background=1a3a5c&color=fff&size=150&font-size=0.4'">
+                </div>
+                <h4>Aira Putri Deninta</h4>
+                <p class="team-nim">0102522006</p>
+                <p class="team-role">UI/UX Designer</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">
+                    <img src="{{ url_for('static', filename='images/andromeda.png') }}" alt="Andromeda Triasta Veliano Hindrayana" onerror="this.src='https://ui-avatars.com/api/?name=Andromeda+Triasta&background=1a3a5c&color=fff&size=150&font-size=0.4'">
+                </div>
+                <h4>Andromeda Triasta Veliano H.</h4>
+                <p class="team-nim">0102522008</p>
+                <p class="team-role">Frontend Developer</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">
+                    <img src="{{ url_for('static', filename='images/abiyasha.png') }}" alt="Muhammad Abiyasha Sergio" onerror="this.src='https://ui-avatars.com/api/?name=Muhammad+Abiyasha&background=1a3a5c&color=fff&size=150&font-size=0.4'">
+                </div>
+                <h4>Muhammad Abiyasha Sergio</h4>
+                <p class="team-nim">0102522016</p>
+                <p class="team-role">Web & Backend Developer</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">
+                    <img src="{{ url_for('static', filename='images/moammar.png') }}" alt="Moammar Saddam" onerror="this.src='https://ui-avatars.com/api/?name=Moammar+Saddam&background=1a3a5c&color=fff&size=150&font-size=0.4'">
+                </div>
+                <h4>Moammar Saddam</h4>
+                <p class="team-nim">0102522025</p>
+                <p class="team-role">Backend & RDF</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="tech-section">
+    <div class="tech-container">
+        <h2>Teknologi yang Digunakan</h2>
+        <div class="tech-grid">
+            <div class="tech-item">
+                <i class="fab fa-python"></i>
+                <span>Python Flask</span>
+            </div>
+            <div class="tech-item">
+                <i class="fas fa-project-diagram"></i>
+                <span>RDFLib</span>
+            </div>
+            <div class="tech-item">
+                <i class="fas fa-database"></i>
+                <span>SPARQL</span>
+            </div>
+            <div class="tech-item">
+                <i class="fas fa-code"></i>
+                <span>OWL Ontology</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-html5"></i>
+                <span>HTML5</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-css3-alt"></i>
+                <span>CSS3</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-js"></i>
+                <span>JavaScript</span>
+            </div>
+            <div class="tech-item">
+                <i class="fas fa-map"></i>
+                <span>Leaflet Maps</span>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

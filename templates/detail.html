@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}Detail Tempat - Jakarta Semantic Harmony{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <h1>Detail Tempat</h1>
+</section>
+
+<section class="detail-section">
+    <div class="detail-container">
+        <!-- Hero Image -->
+        <div class="detail-hero" id="detailHero">
+            <div class="detail-hero-overlay">
+                <h1 id="siteName">Memuat...</h1>
+            </div>
+        </div>
+        
+        <!-- Info Grid -->
+        <div class="detail-grid">
+            <!-- Informasi Umum -->
+            <div class="info-card">
+                <div class="info-card-header">
+                    <h3>Informasi Umum</h3>
+                </div>
+                <div class="info-card-body">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span id="siteAddress">Memuat...</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Jam Buka: <span id="siteHours">-</span></span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-users"></i>
+                        <span>Kapasitas: <span id="siteCapacity">-</span> Jamaah</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-ruler-combined"></i>
+                        <span>Luas Area: <span id="siteArea">-</span></span>
+                    </div>
+                    <div class="info-item" id="architectRow">
+                        <i class="fas fa-drafting-compass"></i>
+                        <span>Arsitek: <span id="siteArchitect">-</span></span>
+                    </div>
+                    <div class="info-item" id="yearRow">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Tahun Berdiri: <span id="siteYear">-</span></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Deskripsi -->
+            <div class="info-card">
+                <div class="info-card-header gold">
+                    <h3>Deskripsi</h3>
+                </div>
+                <div class="info-card-body">
+                    <p id="siteDescription">Tidak Ada Deskripsi</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Akses Transportasi -->
+        <div class="transport-section">
+            <h3>Akses Transportasi Umum</h3>
+            <div class="transport-cards" id="transportCards">
+                <!-- Transport cards will be loaded dynamically -->
+            </div>
+        </div>
+        
+        <!-- Acara Terkait -->
+        <div class="events-section">
+            <h3>Acara Terkait</h3>
+            <div class="event-tags" id="eventTags">
+                <span class="event-tag">Shalat Idul Fitri Kenegaraan</span>
+                <span class="event-tag">Pengajian Akbar Bulanan</span>
+                <span class="event-tag">Shalat Idul Adha Kenegaraan</span>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    const siteId = "{{ site_id }}";
+</script>
+<script src="{{ url_for('static', filename='js/detail.js') }}"></script>
+{% endblock %}

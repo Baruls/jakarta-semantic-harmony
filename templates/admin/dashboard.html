@@ -1,0 +1,395 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard - Jakarta Semantic Harmony{% endblock %}
+
+{% block content %}
+<section class="admin-section">
+    <div class="admin-container">
+        <div class="admin-header">
+            <div class="header-left">
+                <h1><i class="fas fa-tachometer-alt"></i> Admin Dashboard</h1>
+                <p>Kelola data tempat ibadah di Jakarta</p>
+            </div>
+            <div class="header-right">
+                <span class="welcome-text">
+                    <i class="fas fa-user"></i> {{ session.username }}
+                </span>
+                <a href="{{ url_for('admin_add') }}" class="btn btn-add">
+                    <i class="fas fa-plus"></i> Tambah Baru
+                </a>
+                <a href="{{ url_for('logout') }}" class="btn btn-logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        <i class="fas fa-{% if category == 'success' %}check-circle{% elif category == 'danger' %}exclamation-circle{% else %}info-circle{% endif %}"></i>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <div class="stats-row">
+            <div class="stat-card">
+                <i class="fas fa-place-of-worship"></i>
+                <div class="stat-info">
+                    <span class="stat-number">{{ sites|length }}</span>
+                    <span class="stat-label">Total Tempat Ibadah</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-landmark"></i>
+                <div class="stat-info">
+                    <span class="stat-number">{{ sites|selectattr('is_heritage')|list|length }}</span>
+                    <span class="stat-label">Cagar Budaya</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="table-container">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Gambar</th>
+                        <th>Nama</th>
+                        <th>Tipe</th>
+                        <th>Wilayah</th>
+                        <th>Koordinat</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for site in sites %}
+                    <tr>
+                        <td>
+                            <img src="{{ site.gambar_url or '/static/images/placeholder.jpg' }}" 
+                                 alt="{{ site.nama }}" class="site-thumb">
+                        </td>
+                        <td>
+                            <strong>{{ site.nama }}</strong>
+                            <br>
+                            <small class="text-muted">{{ site.alamat }}</small>
+                            {% if site.is_heritage %}
+                            <span class="badge heritage"><i class="fas fa-landmark"></i> Cagar Budaya</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <span class="badge badge-{{ site.tipe|lower }}">
+                                {% if site.tipe == 'Mosque' %}
+                                    <i class="fas fa-mosque"></i> Masjid
+                                {% elif site.tipe == 'Church' %}
+                                    <i class="fas fa-church"></i> Gereja
+                                {% elif site.tipe == 'Vihara' %}
+                                    <i class="fas fa-vihara"></i> Vihara
+                                {% elif site.tipe == 'Temple' %}
+                                    <i class="fas fa-om"></i> Pura
+                                {% endif %}
+                            </span>
+                        </td>
+                        <td>{{ site.wilayah|replace('Jakarta', 'Jakarta ') }}</td>
+                        <td>
+                            <small>
+                                {{ "%.6f"|format(site.latitude) }},<br>
+                                {{ "%.6f"|format(site.longitude) }}
+                            </small>
+                            <a href="https://www.google.com/maps?q={{ site.latitude }},{{ site.longitude }}" 
+                               target="_blank" class="btn-map" title="Lihat di Google Maps">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <a href="{{ url_for('detail', site_id=site.id) }}" class="btn-action btn-view" title="Lihat">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="{{ url_for('admin_edit', site_id=site.id) }}" class="btn-action btn-edit" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <form action="{{ url_for('admin_delete', site_id=site.id) }}" method="POST" 
+                                      style="display: inline;" onsubmit="return confirm('Yakin ingin menghapus {{ site.nama }}?')">
+                                    <button type="submit" class="btn-action btn-delete" title="Hapus">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<style>
+.admin-section {
+    min-height: 100vh;
+    background: #f5f7fa;
+    padding: 30px;
+}
+
+.admin-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.header-left h1 {
+    color: #1a3a5c;
+    margin: 0 0 5px;
+    font-size: 28px;
+}
+
+.header-left p {
+    color: #666;
+    margin: 0;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.welcome-text {
+    color: #666;
+    font-weight: 500;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+}
+
+.btn-add {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+}
+
+.btn-add:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+}
+
+.btn-logout {
+    background: #e74c3c;
+    color: white;
+}
+
+.btn-logout:hover {
+    background: #c0392b;
+}
+
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.stat-card i {
+    font-size: 40px;
+    color: #1a3a5c;
+    opacity: 0.8;
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a3a5c;
+}
+
+.stat-label {
+    color: #666;
+    font-size: 14px;
+}
+
+.table-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th {
+    background: #1a3a5c;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.admin-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+.admin-table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.site-thumb {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.badge-mosque {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.badge-church {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.badge-vihara {
+    background: #fff3e0;
+    color: #ef6c00;
+}
+
+.badge-temple {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.badge.heritage {
+    background: #e3f2fd;
+    color: #1565c0;
+    margin-top: 5px;
+}
+
+.btn-map {
+    display: inline-block;
+    color: #4285F4;
+    margin-left: 5px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-action {
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-view {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.btn-edit {
+    background: #fff3e0;
+    color: #f57c00;
+    text-decoration: none;
+}
+
+.btn-delete {
+    background: #ffebee;
+    color: #d32f2f;
+}
+
+.btn-action:hover {
+    transform: scale(1.1);
+}
+
+.alert {
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.alert-success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.alert-danger {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.alert-info {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.text-muted {
+    color: #888;
+}
+
+@media (max-width: 768px) {
+    .admin-table {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+</style>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %}Beranda - Jakarta Semantic Harmony{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>Selamat datang di website Jakarta Semantic Harmony</h1>
+    </div>
+</section>
+
+<section class="map-section">
+    <div class="map-container">
+        <!-- Filter Panel -->
+        <div class="filter-panel">
+            <h3>Filter</h3>
+            <div class="filter-group">
+                <label class="filter-checkbox">
+                    <input type="checkbox" name="agama" value="Buddha">
+                    <span class="checkmark"></span>
+                    Buddha
+                </label>
+                <label class="filter-checkbox">
+                    <input type="checkbox" name="agama" value="Hindu">
+                    <span class="checkmark"></span>
+                    Hindu
+                </label>
+                <label class="filter-checkbox">
+                    <input type="checkbox" name="agama" value="Islam">
+                    <span class="checkmark"></span>
+                    Islam
+                </label>
+                <label class="filter-checkbox">
+                    <input type="checkbox" name="agama" value="Konghucu">
+                    <span class="checkmark"></span>
+                    Konghucu
+                </label>
+                <label class="filter-checkbox">
+                    <input type="checkbox" name="agama" value="Katolik">
+                    <span class="checkmark"></span>
+                    Kristen Katolik
+                </label>
+                <label class="filter-checkbox">
+                    <input type="checkbox" name="agama" value="KristenProtestan">
+                    <span class="checkmark"></span>
+                    Kristen Protestan
+                </label>
+            </div>
+            <hr>
+            <label class="filter-checkbox">
+                <input type="checkbox" id="heritageOnly">
+                <span class="checkmark"></span>
+                Tampilkan Hanya Cagar Budaya
+            </label>
+            <hr>
+            <div class="filter-select">
+                <label>Pilih Wilayah</label>
+                <select id="wilayahFilter">
+                    <option value="">Semua Wilayah</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- Map -->
+        <div class="map-wrapper">
+            <div id="map"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section">
+    <div class="stats-container">
+        <div class="stat-item">
+            <i class="fas fa-place-of-worship"></i>
+            <h3 id="totalSites">0</h3>
+            <p>Tempat Ibadah</p>
+        </div>
+        <div class="stat-item">
+            <i class="fas fa-landmark"></i>
+            <h3 id="totalHeritage">0</h3>
+            <p>Cagar Budaya</p>
+        </div>
+        <div class="stat-item">
+            <i class="fas fa-pray"></i>
+            <h3>6</h3>
+            <p>Agama</p>
+        </div>
+        <div class="stat-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <h3>5</h3>
+            <p>Wilayah Jakarta</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="{{ url_for('static', filename='js/map.js') }}"></script>
+{% endblock %}

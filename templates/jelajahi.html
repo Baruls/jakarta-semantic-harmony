@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}Jelajahi Situs Religi - Jakarta Semantic Harmony{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <h1>Jelajahi Situs Religi Jakarta</h1>
+</section>
+
+<section class="filter-bar">
+    <div class="filter-container">
+        <div class="filter-item">
+            <select id="jenisFilter">
+                <option value="">Pilih Jenis Tempat Ibadah</option>
+                <option value="Mosque">Masjid</option>
+                <option value="Church">Gereja</option>
+                <option value="Vihara">Vihara</option>
+                <option value="Temple">Pura</option>
+            </select>
+        </div>
+        <div class="filter-item">
+            <select id="wilayahFilter">
+                <option value="">Pilih Wilayah</option>
+            </select>
+        </div>
+        <div class="filter-item">
+            <select id="sortFilter">
+                <option value="">Urutkan</option>
+                <option value="nama-asc">Nama (A-Z)</option>
+                <option value="nama-desc">Nama (Z-A)</option>
+                <option value="tahun-asc">Tahun Terlama</option>
+                <option value="tahun-desc">Tahun Terbaru</option>
+                <option value="agama">Berdasarkan Agama</option>
+                <option value="wilayah">Berdasarkan Wilayah</option>
+            </select>
+        </div>
+        <div class="filter-item search-box">
+            <input type="text" id="searchInput" placeholder="Cari nama masjid, gereja, atau wilayah...">
+            <button id="searchBtn"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+</section>
+
+<section class="sites-section">
+    <div class="sites-container">
+        <div class="sites-grid" id="sitesGrid">
+            <!-- Cards will be loaded dynamically -->
+        </div>
+        
+        <!-- Loading State -->
+        <div class="loading-state" id="loadingState">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Memuat data...</p>
+        </div>
+        
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <i class="fas fa-search"></i>
+            <p>Tidak ada data yang ditemukan</p>
+        </div>
+        
+        <!-- Pagination -->
+        <div class="pagination" id="pagination">
+            <!-- Pagination will be generated dynamically -->
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/jelajahi.js') }}"></script>
+{% endblock %}

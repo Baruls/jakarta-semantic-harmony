@@ -1,0 +1,138 @@
+@prefix : <http://www.semanticweb.org/religion/jakarta#> .
+@prefix rj: <http://www.semanticweb.org/religion/jakarta#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@base <http://www.semanticweb.org/religion/jakarta> .
+
+<http://www.semanticweb.org/religion/jakarta> rdf:type owl:Ontology .
+
+#################################################################
+#    1. CLASSES
+#################################################################
+rj:Place a owl:Class .
+rj:ReligiousSite a owl:Class ; rdfs:subClassOf rj:Place .
+rj:HeritageSite a owl:Class ; rdfs:subClassOf rj:ReligiousSite .
+rj:Mosque a owl:Class ; rdfs:subClassOf rj:ReligiousSite .
+rj:Church a owl:Class ; rdfs:subClassOf rj:ReligiousSite .
+rj:Vihara a owl:Class ; rdfs:subClassOf rj:ReligiousSite .
+rj:Temple a owl:Class ; rdfs:subClassOf rj:ReligiousSite .
+rj:TransportNode a owl:Class .
+rj:TrainStation a owl:Class ; rdfs:subClassOf rj:TransportNode .
+rj:BusStop a owl:Class ; rdfs:subClassOf rj:TransportNode .
+rj:City a owl:Class . rj:District a owl:Class . rj:Religion a owl:Class .
+
+#################################################################
+#    2. PROPERTIES
+#################################################################
+rj:nearestTransport a owl:ObjectProperty .
+rj:locatedInDistrict a owl:ObjectProperty .
+rj:hasLocation a owl:ObjectProperty .
+rj:practicesReligion a owl:ObjectProperty .
+schema:name a owl:DatatypeProperty .
+schema:streetAddress a owl:DatatypeProperty . 
+schema:openingHours a owl:DatatypeProperty .
+rj:postalCode a owl:DatatypeProperty .       
+rj:capacity a owl:DatatypeProperty .         
+rj:surfaceArea a owl:DatatypeProperty .      
+rj:architect a owl:DatatypeProperty .        
+rj:heritageCode a owl:DatatypeProperty .
+rj:isHeritageSite a owl:DatatypeProperty .
+rj:mosqueType a owl:DatatypeProperty .
+rj:establishedYear a owl:DatatypeProperty .
+
+#################################################################
+#    3. INDIVIDUALS (DATA LENGKAP)
+#################################################################
+
+# --- A. MASJID ISTIQLAL ---
+rj:MasjidIstiqlal a owl:NamedIndividual, rj:Mosque, rj:HeritageSite ;
+    schema:name "MASJID ISTIQLAL"@id ;
+    schema:streetAddress "Jl. Taman Wijaya Kusuma No. 1"@id ;
+    # --- PROPERTI WAJIB UNTUK APP.PY ---
+    schema:openingHours "04:00 - 22:00 WIB" ; 
+    rj:postalCode "10710" ;
+    rj:hasLocation rj:JakartaPusat ;
+    rj:locatedInDistrict rj:KecamatanSawahBesar ;
+    rj:capacity "200000"^^xsd:integer ;
+    rj:surfaceArea "9.5 Hektar" ;
+    rj:architect "Friedrich Silaban" ;
+    rj:mosqueType "Masjid Negara" ;
+    rj:isHeritageSite "true"^^xsd:boolean ;
+    rj:nearestTransport rj:StasiunJuanda ;
+    rj:practicesReligion rj:Islam .
+
+# --- B. MASJID AGUNG AL-AZHAR ---
+rj:MasjidAgungAlAzhar a owl:NamedIndividual, rj:Mosque ;
+    schema:name "MASJID AGUNG AL-AZHAR"@id ;
+    schema:streetAddress "Jl. Sisingamangaraja No. 1"@id ;
+    schema:openingHours "04:00 - 22:00 WIB" ;
+    rj:postalCode "12110" ;
+    rj:hasLocation rj:JakartaSelatan ;
+    rj:locatedInDistrict rj:KecamatanKebayoranBaru ;
+    rj:mosqueType "Masjid Agung" ;
+    rj:architect "Buya Hamka (Inisiator)" ;
+    rj:nearestTransport rj:StasiunMRTAsean ;
+    rj:practicesReligion rj:Islam .
+
+# --- C. GEREJA KATEDRAL ---
+rj:GerejaKatedral a owl:NamedIndividual, rj:Church, rj:HeritageSite ;
+    schema:name "GEREJA KATEDRAL JAKARTA"@id ;
+    schema:streetAddress "Jl. Katedral No. 7B"@id ;
+    schema:openingHours "06:00 - 20:00 WIB" ;
+    rj:postalCode "10710" ;
+    rj:hasLocation rj:JakartaPusat ;
+    rj:locatedInDistrict rj:KecamatanSawahBesar ;
+    rj:architect "Marius Hulswit" ;
+    rj:establishedYear "1901"^^xsd:integer ;
+    rj:isHeritageSite "true"^^xsd:boolean ;
+    rj:nearestTransport rj:HalteJuanda ; 
+    rj:practicesReligion rj:Katolik .
+
+# --- D. GEREJA SION ---
+rj:GerejaSion a owl:NamedIndividual, rj:Church, rj:HeritageSite ;
+    schema:name "GEREJA SION"@id ;
+    schema:streetAddress "Jl. Pangeran Jayakarta No. 1"@id ;
+    schema:openingHours "08:00 - 17:00 WIB" ;
+    rj:hasLocation rj:JakartaBarat ;
+    rj:locatedInDistrict rj:KecamatanTamanSari ;
+    rj:isHeritageSite "true"^^xsd:boolean ;
+    rj:heritageCode "KB000344" ; 
+    rj:establishedYear "1695"^^xsd:integer ;
+    rj:nearestTransport rj:StasiunJakartaKota ;
+    rj:practicesReligion rj:KristenProtestan .
+
+# --- E. VIHARA SIN TEK BIO ---
+rj:ViharaSinTekBio a owl:NamedIndividual, rj:Vihara, rj:HeritageSite ;
+    schema:name "VIHARA SIN TEK BIO"@id ;
+    schema:streetAddress "Jl. Pasar Baru Dalam No. 146"@id ;
+    schema:openingHours "06:00 - 18:00 WIB" ;
+    rj:hasLocation rj:JakartaPusat ;
+    rj:locatedInDistrict rj:KecamatanSawahBesar ;
+    rj:heritageCode "KB005402" ; 
+    rj:isHeritageSite "true"^^xsd:boolean ;
+    rj:nearestTransport rj:HaltePasarBaru ;
+    rj:practicesReligion rj:Buddha, rj:Konghucu .
+
+# --- F. PURA ADITYA JAYA ---
+rj:PuraAdityaJaya a owl:NamedIndividual, rj:Temple ;
+    schema:name "PURA ADITYA JAYA"@id ;
+    schema:streetAddress "Jl. Daksinapati Raya No. 10"@id ;
+    schema:openingHours "08:00 - 16:00 WIB" ;
+    rj:hasLocation rj:JakartaTimur ;
+    rj:locatedInDistrict rj:KecamatanPuloGadung ;
+    rj:practicesReligion rj:Hindu .
+
+# --- METADATA ---
+rj:StasiunJuanda a owl:NamedIndividual, rj:TrainStation ; rdfs:label "Stasiun Juanda (KRL)" .
+rj:StasiunJakartaKota a owl:NamedIndividual, rj:TrainStation ; rdfs:label "Stasiun Jakarta Kota (KRL)" .
+rj:StasiunMRTAsean a owl:NamedIndividual, rj:TrainStation ; rdfs:label "Stasiun MRT ASEAN" .
+rj:HalteJuanda a owl:NamedIndividual, rj:BusStop ; rdfs:label "Halte TransJakarta Juanda" .
+rj:HaltePasarBaru a owl:NamedIndividual, rj:BusStop ; rdfs:label "Halte TransJakarta Pasar Baru" .
+rj:JakartaPusat a rj:City . rj:JakartaSelatan a rj:City . rj:JakartaBarat a rj:City . rj:JakartaTimur a rj:City .
+rj:KecamatanSawahBesar a rj:District . rj:KecamatanKebayoranBaru a rj:District . rj:KecamatanTamanSari a rj:District . rj:KecamatanPuloGadung a rj:District .
+rj:Islam a rj:Religion . rj:Katolik a rj:Religion . rj:KristenProtestan a rj:Religion . 
+rj:Buddha a rj:Religion . rj:Konghucu a rj:Religion . rj:Hindu a rj:Religion .

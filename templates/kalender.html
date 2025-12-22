@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Kalender Acara - Jakarta Semantic Harmony{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <h1>Kalender Acara</h1>
+</section>
+
+<section class="calendar-section">
+    <div class="calendar-container">
+        <div class="calendar-wrapper">
+            <div class="calendar-header">
+                <button id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                <h2 id="currentMonth">Desember 2025</h2>
+                <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="calendar-grid">
+                <div class="calendar-day-header">Min</div>
+                <div class="calendar-day-header">Sen</div>
+                <div class="calendar-day-header">Sel</div>
+                <div class="calendar-day-header">Rab</div>
+                <div class="calendar-day-header">Kam</div>
+                <div class="calendar-day-header">Jum</div>
+                <div class="calendar-day-header">Sab</div>
+                <div id="calendarDays"></div>
+            </div>
+        </div>
+        
+        <div class="events-panel">
+            <h3>Acara Mendatang</h3>
+            <div class="upcoming-events" id="upcomingEvents">
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">25</span>
+                        <span class="month">Des</span>
+                    </div>
+                    <div class="event-info">
+                        <h4>Perayaan Natal</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> Gereja Katedral Jakarta</p>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">31</span>
+                        <span class="month">Des</span>
+                    </div>
+                    <div class="event-info">
+                        <h4>Misa Tahun Baru</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> Gereja Katedral Jakarta</p>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">01</span>
+                        <span class="month">Jan</span>
+                    </div>
+                    <div class="event-info">
+                        <h4>Shalat Tahun Baru</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> Masjid Istiqlal</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/kalender.js') }}"></script>
+{% endblock %}
