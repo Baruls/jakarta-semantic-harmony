@@ -1,56 +1,55 @@
 # Jakarta Semantic Harmony
 
-**Website Pemetaan Tempat Ibadah di Jakarta dengan Semantic Web Technology**
+**Semantic Web-Based Platform for Mapping Religious Sites in Jakarta**
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/Flask-3.1.2-green.svg)](https://flask.palletsprojects.com/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## 📖 Deskripsi
+## 📖 Description
 
-Jakarta Semantic Harmony adalah aplikasi web berbasis Semantic Web yang menyediakan informasi lengkap tentang tempat-tempat ibadah di Jakarta. Website ini menggunakan RDF (Resource Description Framework) untuk merepresentasikan data secara terstruktur dan dapat dimengerti oleh mesin.
+Jakarta Semantic Harmony is a semantic web-based application that provides comprehensive information about religious worship sites in Jakarta. This website utilizes RDF (Resource Description Framework) to represent data in a structured and machine-understandable format.
 
-### ✨ Fitur Utama
+### ✨ Key Features
 
-- 🗺️ **Peta Interaktif** - Visualisasi lokasi tempat ibadah menggunakan Leaflet.js
-- 🔍 **Pencarian & Filter** - Filter berdasarkan agama, wilayah, dan status cagar budaya
-- 📍 **Detail Lokasi** - Informasi lengkap termasuk koordinat, jam operasional, kapasitas, dll
-- 📅 **Kalender Acara** - Informasi acara keagamaan di berbagai tempat ibadah
-- 🏛️ **Status Cagar Budaya** - Identifikasi bangunan bersejarah
-- 🔐 **Admin CRUD** - Sistem manajemen data untuk admin
-- 💾 **Auto Backup** - Backup database otomatis setiap server restart
+- 🗺️ **Interactive Map** - Visualize religious site locations using Leaflet.js
+- 🔍 **Search & Filter** - Filter by religion, district, and heritage status
+- 📍 **Location Details** - Complete information including coordinates, operating hours, capacity, etc.
+- 📅 **Event Calendar** - Information about religious events at various worship sites
+- 🏛️ **Heritage Status** - Identification of historical buildings
+- 💾 **Auto Backup** - Automatic database backup on every server restart
 
-### 🛕 Agama yang Dicakup
+### 🛕 Religions Covered
 
-- Islam (Masjid)
-- Kristen Katolik (Gereja)
-- Kristen Protestan (Gereja)
-- Buddha (Vihara)
-- Hindu (Pura)
-- Konghucu (Kelenteng)
+- Islam (Mosque)
+- Catholic Christianity (Church)
+- Protestant Christianity (Church)
+- Buddhism (Temple)
+- Hinduism (Pura)
+- Confucianism (Temple)
 
-## 🚀 Instalasi
+## 🚀 Installation
 
-### Prasyarat
+### Prerequisites
 
-- Python 3.9 atau lebih tinggi
+- Python 3.9 or higher
 - pip (Python package manager)
-- Git (opsional)
+- Git (optional)
 
-### Langkah Instalasi
+### Installation Steps
 
 1. **Clone repository**
    ```bash
-   git clone https://github.com/yourusername/jakarta-semantic-harmony.git
+   git clone https://github.com/Baruls/jakarta-semantic-harmony.git
    cd jakarta-semantic-harmony
    ```
 
-2. **Buat virtual environment**
+2. **Create virtual environment**
    ```bash
    python -m venv .venv
    ```
 
-3. **Aktifkan virtual environment**
+3. **Activate virtual environment**
    - Windows:
      ```powershell
      .\.venv\Scripts\Activate.ps1
@@ -65,99 +64,79 @@ Jakarta Semantic Harmony adalah aplikasi web berbasis Semantic Web yang menyedia
    pip install -r requirements.txt
    ```
 
-5. **Jalankan aplikasi**
+5. **Run application**
    
-   **Mode Development:**
+   **Development Mode:**
    ```bash
    python app.py
    ```
    
-   **Mode Production:**
+   **Production Mode:**
    ```bash
    python run_production.py
    ```
 
-6. **Akses aplikasi**
+6. **Access application**
    - Development: `http://127.0.0.1:1081`
-   - Production: `http://0.0.0.0:1081` (bisa diakses dari jaringan lokal)
+   - Production: `http://0.0.0.0:1081` (accessible from local network)
 
-## 📁 Struktur Project
+## 📁 Project Structure
 
 ```
 jakarta-semantic-harmony/
-├── app.py                 # Aplikasi Flask utama
-├── run_production.py      # Script untuk production mode
+├── app.py                 # Main Flask application
+├── run_production.py      # Production mode script
 ├── requirements.txt       # Python dependencies
-├── ReligiJakarta.ttl     # Data RDF/Turtle
-├── sites.db              # Database SQLite (auto-generated)
+├── ReligiJakarta.ttl     # RDF/Turtle data
+├── sites.db              # SQLite database (auto-generated)
 ├── static/
 │   ├── css/
-│   │   └── style.css     # Stylesheet utama
-│   ├── images/           # Gambar tempat ibadah
+│   │   └── style.css     # Main stylesheet
+│   ├── images/           # Religious site images
 │   └── js/
-│       ├── main.js       # JavaScript utama
-│       ├── map.js        # Logic peta
-│       ├── jelajahi.js   # Logic halaman jelajahi
-│       ├── detail.js     # Logic halaman detail
-│       └── kalender.js   # Logic kalender
+│       ├── main.js       # Main JavaScript
+│       ├── map.js        # Map logic
+│       ├── jelajahi.js   # Browse page logic
+│       ├── detail.js     # Detail page logic
+│       └── kalender.js   # Calendar logic
 ├── templates/
-│   ├── base.html         # Template dasar
-│   ├── index.html        # Halaman beranda
-│   ├── jelajahi.html     # Halaman jelajahi
-│   ├── detail.html       # Halaman detail
-│   ├── kalender.html     # Halaman kalender
-│   ├── tentang.html      # Halaman tentang
-│   ├── login.html        # Halaman login admin
-│   └── admin/
-│       ├── dashboard.html
-│       └── form.html
-└── backup/               # Backup database otomatis
+│   ├── base.html         # Base template
+│   ├── index.html        # Home page
+│   ├── jelajahi.html     # Browse page
+│   ├── detail.html       # Detail page
+│   ├── kalender.html     # Calendar page
+│   └── tentang.html      # About page
+└── backup/               # Automatic database backups
 ```
-
-## 🔐 Admin CRUD
-
-Akses halaman admin untuk mengelola data tempat ibadah.
-
-**Login Credentials:**
-- Username: `admin`
-- Password: `jomok123`
-
-**Fitur Admin:**
-- ➕ Tambah tempat ibadah baru
-- ✏️ Edit informasi tempat ibadah
-- 🗑️ Hapus tempat ibadah
-- 📊 Dashboard statistik
-
-**Akses:** Klik icon user kecil di pojok kanan navbar (hover untuk melihat)
 
 ## 🗄️ Database
 
-Aplikasi menggunakan SQLite untuk menyimpan data. Database akan dibuat otomatis saat pertama kali aplikasi dijalankan.
+The application uses SQLite to store data. The database is automatically created when the application runs for the first time.
 
-**Backup Otomatis:**
-- Database di-backup setiap kali server restart
-- Backup disimpan di folder `backup/`
-- Maksimal 10 backup terbaru disimpan
+**Automatic Backup:**
+- Database is backed up every time the server restarts
+- Backups are stored in the `backup/` folder
+- Maximum of 10 recent backups are kept
 
-**Restore Manual:**
+**Manual Restore:**
 ```powershell
 Copy-Item "backup\sites_backup_TIMESTAMP.db" -Destination "sites.db"
 ```
 
 ## 🌐 Deployment
 
-### Untuk Akses Jaringan Lokal
+### For Local Network Access
 
-Edit `app.py` dan jalankan:
+Edit `app.py` and run:
 ```python
 app.run(host='0.0.0.0', port=1081)
 ```
 
-Akses dari komputer lain: `http://[IP_ADDRESS]:1081`
+Access from other computers: `http://[IP_ADDRESS]:1081`
 
-### Untuk Production Server
+### For Production Server
 
-Gunakan WSGI server seperti Waitress (sudah include di requirements.txt):
+Use WSGI server like Waitress (included in requirements.txt):
 
 ```python
 # run_production.py
@@ -169,12 +148,12 @@ if __name__ == '__main__':
     serve(app, host='0.0.0.0', port=1081, threads=4)
 ```
 
-Jalankan:
+Run:
 ```bash
 python run_production.py
 ```
 
-## 🛠️ Teknologi yang Digunakan
+## 🛠️ Technologies Used
 
 ### Backend
 - **Flask 3.1.2** - Web framework
@@ -195,26 +174,26 @@ python run_production.py
 
 ## 📊 API Endpoints
 
-- `GET /api/sites` - Mendapatkan semua tempat ibadah
-- `GET /api/site/<id>` - Mendapatkan detail tempat ibadah
-- `GET /api/locations` - Mendapatkan daftar wilayah
-- `GET /api/stats` - Mendapatkan statistik (total sites, cagar budaya)
+- `GET /api/sites` - Get all religious sites
+- `GET /api/site/<id>` - Get religious site details
+- `GET /api/locations` - Get list of districts
+- `GET /api/stats` - Get statistics (total sites, heritage sites)
 
-## 🤝 Kontribusi
+## 🤝 Contributing
 
-Kontribusi sangat diterima! Silakan:
+Contributions are welcome! Please:
 
-1. Fork repository ini
-2. Buat branch baru (`git checkout -b feature/AmazingFeature`)
-3. Commit perubahan (`git commit -m 'Add some AmazingFeature'`)
-4. Push ke branch (`git push origin feature/AmazingFeature`)
-5. Buat Pull Request
+1. Fork this repository
+2. Create a new branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Create a Pull Request
 
 ## 📝 License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-## 👥 Tim Pengembang
+## 👥 Development Team
 
 **Kelompok 1**
 - Member 1
@@ -222,17 +201,17 @@ Distributed under the MIT License. See `LICENSE` for more information.
 - Member 3
 - Member 4
 
-## 📞 Kontak
+## 📞 Contact
 
-Project Link: [https://github.com/yourusername/jakarta-semantic-harmony](https://github.com/yourusername/jakarta-semantic-harmony)
+Project Link: [https://github.com/Baruls/jakarta-semantic-harmony](https://github.com/Baruls/jakarta-semantic-harmony)
 
 ## 🙏 Acknowledgments
 
-- OpenStreetMap untuk peta dasar
-- Leaflet.js untuk library peta interaktif
-- Font Awesome untuk icon
-- Wikipedia untuk beberapa gambar tempat ibadah
+- OpenStreetMap for base maps
+- Leaflet.js for interactive map library
+- Font Awesome for icons
+- Wikipedia for some religious site images
 
 ---
 
-⭐ Jangan lupa beri star jika project ini bermanfaat!
+⭐ Don't forget to star this project if you find it useful!
