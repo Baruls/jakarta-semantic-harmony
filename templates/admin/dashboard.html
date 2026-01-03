@@ -93,6 +93,7 @@
                         </td>
                         <td>{{ site.wilayah|replace('Jakarta', 'Jakarta ') }}</td>
                         <td>
+                            {% if site.latitude and site.longitude %}
                             <small>
                                 {{ "%.6f"|format(site.latitude) }},<br>
                                 {{ "%.6f"|format(site.longitude) }}
@@ -101,6 +102,9 @@
                                target="_blank" class="btn-map" title="Lihat di Google Maps">
                                 <i class="fas fa-map-marker-alt"></i>
                             </a>
+                            {% else %}
+                            <small class="text-muted">Tidak ada koordinat</small>
+                            {% endif %}
                         </td>
                         <td>
                             <div class="action-buttons">

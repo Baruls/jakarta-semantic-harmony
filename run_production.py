@@ -9,7 +9,7 @@ if __name__ == '__main__':
     # Backup database saat start
     backup_database()
     
-    print("✅ Server running on http://0.0.0.0:1081")
+    print("✅ Server running on http://0.0.0.0:1083")
     print("📍 Accessible from local network & tunnels (playit.gg)")
     print("🛑 Press CTRL+C to stop")
     print("="*60)

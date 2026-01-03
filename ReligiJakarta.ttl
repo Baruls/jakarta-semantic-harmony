@@ -1,138 +1,247 @@
-@prefix : <http://www.semanticweb.org/religion/jakarta#> .
-@prefix rj: <http://www.semanticweb.org/religion/jakarta#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix geo1: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix schema: <http://schema.org/> .
-@base <http://www.semanticweb.org/religion/jakarta> .
+@prefix rel: <http://jakartaharmony.id/religijkt#> .
+@prefix schema1: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://www.semanticweb.org/religion/jakarta> rdf:type owl:Ontology .
+rel:GerejaKatedral a rel:TempatIbadah ;
+    rdfs:label "Gereja Katedral Santa Perawan Maria"@id ;
+    rel:agama "Katolik" ;
+    rel:arsitek "Marius Hulswit" ;
+    rel:jamOperasional "06:00 - 20:00 WIB" ;
+    rel:kapasitas 800 ;
+    rel:kecamatan "Sawah Besar" ;
+    rel:kodeCagarBudaya "KB000123" ;
+    rel:kodePos "10710" ;
+    rel:luasLahan "0.5 Hektar" ;
+    rel:nama "Gereja Katedral Santa Perawan Maria" ;
+    rel:statusCagarBudaya true ;
+    rel:tahunBerdiri "1901"^^xsd:gYear ;
+    rel:tipeBangunan "Church" ;
+    rel:transportTerdekat "2 Juanda (TJ)",
+        "Bogor Line: Juanda (KRL)",
+        "H6 Istiqlal (TJ)" ;
+    rel:wilayah "JakartaPusat" ;
+    schema1:address "Jl. Katedral No.7B, Ps. Baru, Kecamatan Sawah Besar, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10710" ;
+    schema1:description "Gereja Katedral Jakarta atau Gereja Santa Maria Pelindung Diangkat Ke Surga adalah gereja Katolik bergaya neo-gotik yang terletak di Jakarta Pusat, tepat berseberangan dengan Masjid Istiqlal."@id ;
+    schema1:image "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxTV0SocLi0k9GNtepHM4kHIG1XQklR3tI9IAyua0qiZls7yU3OT3j24jxviEUxq6yreoIWgnWKxZZ9jZzDD5wzmDdEDN8695x9isVzcDPgHwqO2QCGVeVxHY8IblGmxbH9ltT5=w408-h544-k-no" ;
+    geo1:lat -6.169053823876286 ;
+    geo1:long 106.83320312502548 .
 
-#################################################################
-#    1. CLASSES
-#################################################################
-rj:Place a owl:Class .
-rj:ReligiousSite a owl:Class ; rdfs:subClassOf rj:Place .
-rj:HeritageSite a owl:Class ; rdfs:subClassOf rj:ReligiousSite .
-rj:Mosque a owl:Class ; rdfs:subClassOf rj:ReligiousSite .
-rj:Church a owl:Class ; rdfs:subClassOf rj:ReligiousSite .
-rj:Vihara a owl:Class ; rdfs:subClassOf rj:ReligiousSite .
-rj:Temple a owl:Class ; rdfs:subClassOf rj:ReligiousSite .
-rj:TransportNode a owl:Class .
-rj:TrainStation a owl:Class ; rdfs:subClassOf rj:TransportNode .
-rj:BusStop a owl:Class ; rdfs:subClassOf rj:TransportNode .
-rj:City a owl:Class . rj:District a owl:Class . rj:Religion a owl:Class .
+rel:GerejaSion a rel:TempatIbadah ;
+    rdfs:label "Gereja Sion"@id ;
+    rel:agama "KristenProtestan" ;
+    rel:arsitek "None" ;
+    rel:jamOperasional "08:00 - 17:00 WIB" ;
+    rel:kapasitas 400 ;
+    rel:kecamatan "Taman Sari" ;
+    rel:kodeCagarBudaya "KB000344" ;
+    rel:kodePos "11110" ;
+    rel:luasLahan "0.3 Hektar" ;
+    rel:nama "Gereja Sion" ;
+    rel:statusCagarBudaya true ;
+    rel:tahunBerdiri "1695"^^xsd:gYear ;
+    rel:tipeBangunan "Church" ;
+    rel:transportTerdekat "1 Glodok (TJ)",
+        "Bogor Line: Jakarta Kota (KRL)" ;
+    rel:wilayah "JakartaBarat" ;
+    schema1:address "Jl. Pangeran Jayakarta No.1, RT.9/RW.4, Pinangsia, Kec. Taman Sari, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11110" ;
+    schema1:description "Gereja Sion atau GPIB Portugis adalah gereja tertua di Jakarta yang dibangun pada masa VOC. Gereja ini awalnya bernama Gereja Portugis karena dibangun untuk jemaat Portugis di Batavia."@id ;
+    schema1:image "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSx4nA0zq2bDiK2udrEnmRSoH3IwNarSdzCHYw-HT9f0GlSCreeI09jNYOgRBt9wvAgmBCrHnFJiq5r_vvSN-VZYuFYDzrL3SY2yuxb7DKf-v8ZH-NvqKknhSJ58f4HHJpF06O25L1nGkpMj=w408-h306-k-no" ;
+    geo1:lat -6.138153379832335 ;
+    geo1:long 106.81767715654651 .
 
-#################################################################
-#    2. PROPERTIES
-#################################################################
-rj:nearestTransport a owl:ObjectProperty .
-rj:locatedInDistrict a owl:ObjectProperty .
-rj:hasLocation a owl:ObjectProperty .
-rj:practicesReligion a owl:ObjectProperty .
-schema:name a owl:DatatypeProperty .
-schema:streetAddress a owl:DatatypeProperty . 
-schema:openingHours a owl:DatatypeProperty .
-rj:postalCode a owl:DatatypeProperty .       
-rj:capacity a owl:DatatypeProperty .         
-rj:surfaceArea a owl:DatatypeProperty .      
-rj:architect a owl:DatatypeProperty .        
-rj:heritageCode a owl:DatatypeProperty .
-rj:isHeritageSite a owl:DatatypeProperty .
-rj:mosqueType a owl:DatatypeProperty .
-rj:establishedYear a owl:DatatypeProperty .
+rel:MasjidAgungAlAzhar a rel:TempatIbadah ;
+    rdfs:label "Masjid Agung Al-Azhar"@id ;
+    rel:agama "Islam" ;
+    rel:arsitek "Buya Hamka (Inisiator)" ;
+    rel:jamOperasional "04:00 - 22:00 WIB" ;
+    rel:kapasitas 15000 ;
+    rel:kecamatan "Kebayoran Baru" ;
+    rel:kodePos "12110" ;
+    rel:luasLahan "2.5 Hektar" ;
+    rel:nama "Masjid Agung Al-Azhar" ;
+    rel:tahunBerdiri "1958"^^xsd:gYear ;
+    rel:tipeBangunan "Mosque" ;
+    rel:transportTerdekat "1 Masjid Agung (TJ)",
+        "13 CSW 1 (TJ)",
+        "6V Masjid Agung (TJ)",
+        "ASEAN (MRT)" ;
+    rel:wilayah "JakartaSelatan" ;
+    schema1:address "Jl. Sisingamangaraja No.1, RT.2/RW.1, Selong, Kec. Kby. Baru, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12110" ;
+    schema1:description "Masjid Agung Al-Azhar adalah salah satu masjid bersejarah di Jakarta yang didirikan atas inisiatif Buya Hamka. Nama Al-Azhar diberikan oleh Grand Syaikh Al-Azhar Mesir sebagai tanda persaudaraan."@id ;
+    schema1:image "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSyuVG5CnBO7AniYMJFoXxUkiS_CbYonOrUb4R44QzfIQUqeP__XWGOZDD-9lfAkWWAxnoXWOQgVhgpCoFd7iSxp4mc-08buX8aQX07J7Du62AeHadCYAZt9Ma2yDqmzXHXGPw14=w426-h240-k-no" ;
+    geo1:lat -6.235133579750323 ;
+    geo1:long 106.79933999058079 .
 
-#################################################################
-#    3. INDIVIDUALS (DATA LENGKAP)
-#################################################################
+rel:MasjidAlAnshor a rel:TempatIbadah ;
+    rdfs:label "Masjid Al-Anshor"@id ;
+    rel:agama "Islam" ;
+    rel:jamOperasional "24 Jam" ;
+    rel:kecamatan "Tambora" ;
+    rel:kodeCagarBudaya "KB000137" ;
+    rel:kodePos "11240" ;
+    rel:nama "Masjid Al-Anshor" ;
+    rel:statusCagarBudaya true ;
+    rel:tipeBangunan "Mosque" ;
+    rel:transportTerdekat "Bogor Line: Jakarta Kota (KRL)",
+        "Cikarang Line: Angke (KRL)",
+        "M10 Simpang Perniagaan Tambora (TJ)" ;
+    rel:wilayah "JakartaBarat" ;
+    schema1:address "Jl. Pengukiran II No.61, RT.7/RW.4, Pekojan, Kec. Tambora, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11240" ;
+    schema1:description "Masjid Jami Al-Anshor merupakan masjid bersejarah yang terletak di Kecamatan Tambora, Jakarta Barat. Ditetapkan sebagai cagar budaya nasional melalui SK 0128/M/1988 tanggal 27 Februari 1988. Masjid ini menjadi salah satu tempat ibadah penting bagi masyarakat sekitar."@id ;
+    schema1:image "https://pict.sindonews.net/dyn/600/pena/sindo-article/original/2020/04/30/masjid%20Moor%20Pekojan.jpg" ;
+    geo1:lat -6.139039844611096 ;
+    geo1:long 106.80687909766816 .
 
-# --- A. MASJID ISTIQLAL ---
-rj:MasjidIstiqlal a owl:NamedIndividual, rj:Mosque, rj:HeritageSite ;
-    schema:name "MASJID ISTIQLAL"@id ;
-    schema:streetAddress "Jl. Taman Wijaya Kusuma No. 1"@id ;
-    # --- PROPERTI WAJIB UNTUK APP.PY ---
-    schema:openingHours "04:00 - 22:00 WIB" ; 
-    rj:postalCode "10710" ;
-    rj:hasLocation rj:JakartaPusat ;
-    rj:locatedInDistrict rj:KecamatanSawahBesar ;
-    rj:capacity "200000"^^xsd:integer ;
-    rj:surfaceArea "9.5 Hektar" ;
-    rj:architect "Friedrich Silaban" ;
-    rj:mosqueType "Masjid Negara" ;
-    rj:isHeritageSite "true"^^xsd:boolean ;
-    rj:nearestTransport rj:StasiunJuanda ;
-    rj:practicesReligion rj:Islam .
+rel:MasjidIstiqlal a rel:TempatIbadah ;
+    rdfs:label "Masjid Istiqlal"@id ;
+    rel:agama "Islam" ;
+    rel:arsitek "Friedrich Silaban" ;
+    rel:jamOperasional "04:00 - 22:00 WIB" ;
+    rel:kapasitas 200000 ;
+    rel:kecamatan "Sawah Besar" ;
+    rel:kodeCagarBudaya "None" ;
+    rel:kodePos "10710" ;
+    rel:luasLahan "9.5 Hektar" ;
+    rel:nama "Masjid Istiqlal" ;
+    rel:statusCagarBudaya true ;
+    rel:tahunBerdiri "1978"^^xsd:gYear ;
+    rel:tipeBangunan "Mosque" ;
+    rel:transportTerdekat "8 Juanda (TJ)",
+        "H6 Istiqlal (TJ)" ;
+    rel:wilayah "JakartaPusat" ;
+    schema1:address "Jalan Taman Wijaya Kusuma, Pasar Baru, Sawah Besar, Central Jakarta City, Jakarta 10710" ;
+    schema1:description "Masjid Istiqlal adalah masjid terbesar di Asia Tenggara dan menjadi simbol kerukunan beragama di Indonesia. Dibangun atas prakarsa Presiden Soekarno dan dirancang oleh arsitek Kristen Protestan, Friedrich Silaban, sebagai tanda toleransi antar umat beragama."@id ;
+    schema1:image "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxVyqo8K7y5AsbuQHpzPMcp3D0tahOODD2l6JIpn_teQK9b2RjAa7qkxu-vGzV2RByvN0X2HYDOWBps53MJIt49Czy-WwvJct5DvPPkhsCpmKO50nyaimdDIJ8ynQLWUuzWw5A0CA=w408-h306-k-no" ;
+    geo1:lat -6.170358689909791 ;
+    geo1:long 106.83110708099589 .
 
-# --- B. MASJID AGUNG AL-AZHAR ---
-rj:MasjidAgungAlAzhar a owl:NamedIndividual, rj:Mosque ;
-    schema:name "MASJID AGUNG AL-AZHAR"@id ;
-    schema:streetAddress "Jl. Sisingamangaraja No. 1"@id ;
-    schema:openingHours "04:00 - 22:00 WIB" ;
-    rj:postalCode "12110" ;
-    rj:hasLocation rj:JakartaSelatan ;
-    rj:locatedInDistrict rj:KecamatanKebayoranBaru ;
-    rj:mosqueType "Masjid Agung" ;
-    rj:architect "Buya Hamka (Inisiator)" ;
-    rj:nearestTransport rj:StasiunMRTAsean ;
-    rj:practicesReligion rj:Islam .
+rel:MasjidJamiAlMansyur a rel:TempatIbadah ;
+    rdfs:label "Masjid Jami Al-Mansyur"@id ;
+    rel:agama "Islam" ;
+    rel:arsitek "Abdul Malik (putra Pangeran Cakrajaya)" ;
+    rel:jamOperasional "24 Jam" ;
+    rel:kapasitas 300 ;
+    rel:kecamatan "Tambora" ;
+    rel:kodeCagarBudaya "KB000135" ;
+    rel:kodePos "11250" ;
+    rel:nama "Masjid Jami Al-Mansyur" ;
+    rel:statusCagarBudaya true ;
+    rel:tahunBerdiri "1717"^^xsd:gYear ;
+    rel:tipeBangunan "Mosque" ;
+    rel:transportTerdekat "Cikarang Line: Kampungbandan (KRL)",
+        "M10 Puskesmas Tambora (TJ)" ;
+    rel:wilayah "JakartaBarat" ;
+    schema1:address "Jl. KH.Moh.Mansyur No.185, RT.4/RW.1, Jemb. Lima, Kec. Tambora, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11250" ;
+    schema1:description "Deskripsi: Masjid Al-Mansyur merupakan salah satu masjid tertua di Jakarta yang dibangun pada tahun 1717 oleh Abdul Malik, putra Pangeran Cakrajaya dari Kerajaan Mataram. Masjid ini memiliki arsitektur campuran Jawa, Arab, dan Eropa dengan atap berbentuk joglo dua tingkat, empat tiang soko guru besar berdiameter 1.5 meter, serta menara setinggi 50 meter. Pengaruh Arab terlihat dari pilar-pilar berbentuk ogee, sedangkan pengaruh Eropa tampak pada tiang-tiang megah. Masjid ini menjadi saksi sejarah perjuangan kemerdekaan di bawah pimpinan KH. Mohammad Mansyur yang berani mengibarkan bendera Merah Putih di menara masjid saat masa penjajahan. Ditetapkan sebagai cagar budaya provinsi melalui SK 475 tahun 1993."@id ;
+    schema1:image "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxNuunnaCsgiwiH5j0MmUGlgVHPXP8dI04jPNJxEQMLVTQLOsZviXV4Uj9FRylk7xQSJoKJxFgQ0pZlQTZbZ9JxbwGWn5zV1QkSd2uOn8aGoBvBSZJprGOylYkyXqy0aX9iMo8x=w426-h240-k-no" ;
+    geo1:lat -6.146376558222913 ;
+    geo1:long 106.80632542391393 .
 
-# --- C. GEREJA KATEDRAL ---
-rj:GerejaKatedral a owl:NamedIndividual, rj:Church, rj:HeritageSite ;
-    schema:name "GEREJA KATEDRAL JAKARTA"@id ;
-    schema:streetAddress "Jl. Katedral No. 7B"@id ;
-    schema:openingHours "06:00 - 20:00 WIB" ;
-    rj:postalCode "10710" ;
-    rj:hasLocation rj:JakartaPusat ;
-    rj:locatedInDistrict rj:KecamatanSawahBesar ;
-    rj:architect "Marius Hulswit" ;
-    rj:establishedYear "1901"^^xsd:integer ;
-    rj:isHeritageSite "true"^^xsd:boolean ;
-    rj:nearestTransport rj:HalteJuanda ; 
-    rj:practicesReligion rj:Katolik .
+rel:MasjidJamiAngkeAlAnwar a rel:TempatIbadah ;
+    rdfs:label "Masjid Jami' Angke Al-Anwar"@id ;
+    rel:agama "Islam" ;
+    rel:arsitek "Komunitas etnis Jawa, Cina, dan Bali" ;
+    rel:jamOperasional "24 Jam" ;
+    rel:kapasitas 300 ;
+    rel:kecamatan "Tambora" ;
+    rel:kodeCagarBudaya "KB000138" ;
+    rel:kodePos "11330" ;
+    rel:nama "Masjid Jami' Angke Al-Anwar" ;
+    rel:statusCagarBudaya true ;
+    rel:tahunBerdiri "1751"^^xsd:gYear ;
+    rel:tipeBangunan "Mosque" ;
+    rel:transportTerdekat "9 Jembatan Dua (TJ)",
+        "Cikarang Line: Angke (KRL)" ;
+    rel:wilayah "JakartaBarat" ;
+    schema1:address "Jl. Pangeran Tubagus Angke Jl. Pangeran Tubagus Angke Gg. Masjid I No.1 1, RT.1/RW.5, Angke, Kec. Tambora, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11330" ;
+    schema1:description "Masjid Jami Al-Anwar didirikan pada tahun 1751 oleh komunitas campuran dari etnis Jawa, Cina, dan Bali setelah pembantaian orang Cina di tahun 1761. Masjid ini memiliki arsitektur campuran Cina dan Jawa dengan struktur dasar berbentuk empat persegi dan ornamen kayu khas Jawa, serta susunan balok atap bergaya Cina. Di sekitar masjid terdapat lebih dari 50 makam, termasuk makam Sultan Abdul Hamid Al-Qadri dari Pontianak. Masjid ini masih aktif digunakan dan dapat menampung sekitar 300 jamaah. Ditetapkan sebagai cagar budaya nasional melalui SK 0128/M/1988."@id ;
+    schema1:image "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSwjlpaoViwyA75EhLqnpAp5wSf-NvQphqTRdA5-e5PA6bTeKeGB10igTHXbEhDYxbKtgXlEyjkC_9x8xhATNOOM4jKNQqpoXfovX9J06bCAEBKc8pILVZH4pC14ymObdnS-YXj_=w408-h725-k-no" ;
+    geo1:lat -6.1434229330774 ;
+    geo1:long 106.79587154051735 .
 
-# --- D. GEREJA SION ---
-rj:GerejaSion a owl:NamedIndividual, rj:Church, rj:HeritageSite ;
-    schema:name "GEREJA SION"@id ;
-    schema:streetAddress "Jl. Pangeran Jayakarta No. 1"@id ;
-    schema:openingHours "08:00 - 17:00 WIB" ;
-    rj:hasLocation rj:JakartaBarat ;
-    rj:locatedInDistrict rj:KecamatanTamanSari ;
-    rj:isHeritageSite "true"^^xsd:boolean ;
-    rj:heritageCode "KB000344" ; 
-    rj:establishedYear "1695"^^xsd:integer ;
-    rj:nearestTransport rj:StasiunJakartaKota ;
-    rj:practicesReligion rj:KristenProtestan .
+rel:MasjidJamiAnnawir a rel:TempatIbadah ;
+    rdfs:label "Masjid Jami Annawir"@id ;
+    rel:agama "Islam" ;
+    rel:jamOperasional "24 Jam" ;
+    rel:kecamatan "Tambora" ;
+    rel:kodeCagarBudaya "KB000136" ;
+    rel:kodePos "11240" ;
+    rel:nama "Masjid Jami Annawir" ;
+    rel:statusCagarBudaya true ;
+    rel:tipeBangunan "Mosque" ;
+    rel:transportTerdekat "Cikarang Line: Angke (KRL)",
+        "M10 Simpang Perniagaan Tambora (TJ)" ;
+    rel:wilayah "JakartaBarat" ;
+    schema1:address "Jl. Pekojan Raya No.71, RT.3/RW.1, Pekojan, Kec. Tambora, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11240" ;
+    schema1:description "Masjid Jami Annawir terletak di kawasan Pekojan, Jakarta Barat. Masjid ini merupakan salah satu masjid bersejarah yang ditetapkan sebagai cagar budaya nasional melalui SK 0128/M/1988 tanggal 27 Februari 1988. Masjid ini menjadi pusat kegiatan keagamaan bagi masyarakat sekitar Pekojan."@id ;
+    schema1:image "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSynEUDAdwR0kdgcO_oxioUs-g3uJ1UKLWYEoqIJKS4qzp12IO_PBdwghBYIVswpX84wNEc9PbP-8z_gpCAEq6bZr3r5YiF0mv4NzB8BBeIdTX5g5od86n9JDFpsy5LOX-32znCx=w408-h306-k-no" ;
+    geo1:lat -6.141525175716855 ;
+    geo1:long 106.80451835564396 .
 
-# --- E. VIHARA SIN TEK BIO ---
-rj:ViharaSinTekBio a owl:NamedIndividual, rj:Vihara, rj:HeritageSite ;
-    schema:name "VIHARA SIN TEK BIO"@id ;
-    schema:streetAddress "Jl. Pasar Baru Dalam No. 146"@id ;
-    schema:openingHours "06:00 - 18:00 WIB" ;
-    rj:hasLocation rj:JakartaPusat ;
-    rj:locatedInDistrict rj:KecamatanSawahBesar ;
-    rj:heritageCode "KB005402" ; 
-    rj:isHeritageSite "true"^^xsd:boolean ;
-    rj:nearestTransport rj:HaltePasarBaru ;
-    rj:practicesReligion rj:Buddha, rj:Konghucu .
+rel:PuraAdityaJaya a rel:TempatIbadah ;
+    rdfs:label "Pura Adhitya Jaya"@id ;
+    rel:agama "Hindu" ;
+    rel:arsitek "None" ;
+    rel:jamOperasional "08:00 - 16:00 WIB" ;
+    rel:kapasitas 300 ;
+    rel:kecamatan "Pulo Gadung" ;
+    rel:kodePos "13220" ;
+    rel:luasLahan "0.6 Hektar" ;
+    rel:nama "Pura Adhitya Jaya" ;
+    rel:tahunBerdiri "1972"^^xsd:gYear ;
+    rel:tipeBangunan "Temple" ;
+    rel:transportTerdekat "10 Pemuda Pramuka (TJ)",
+        "4 Simpang Pramuka 1 (TJ)" ;
+    rel:wilayah "JakartaTimur" ;
+    schema1:address "Jl. Daksinapati Raya No.10, RT.11/RW.14, Rawamangun, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13220" ;
+    schema1:description "Pura Aditya Jaya adalah pura Hindu terbesar di Jakarta yang terletak di kawasan Rawamangun. Pura ini menjadi pusat kegiatan keagamaan umat Hindu di ibukota."@id ;
+    schema1:image "https://manual.co.id/wp-content/uploads/2019/03/Manual-Excursion-Pura-Rawamangun-10-980x719.jpg" ;
+    geo1:lat -6.19524571755882 ;
+    geo1:long 106.8751639335211 .
 
-# --- F. PURA ADITYA JAYA ---
-rj:PuraAdityaJaya a owl:NamedIndividual, rj:Temple ;
-    schema:name "PURA ADITYA JAYA"@id ;
-    schema:streetAddress "Jl. Daksinapati Raya No. 10"@id ;
-    schema:openingHours "08:00 - 16:00 WIB" ;
-    rj:hasLocation rj:JakartaTimur ;
-    rj:locatedInDistrict rj:KecamatanPuloGadung ;
-    rj:practicesReligion rj:Hindu .
+rel:PuraCandraPrabhaJelambar a rel:TempatIbadah ;
+    rdfs:label "Pura Candra Prabha Jelambar"@id ;
+    rel:agama "Hindu" ;
+    rel:arsitek "-" ;
+    rel:jamOperasional "24 Jam" ;
+    rel:kapasitas 1000 ;
+    rel:kecamatan "KecamatanGrogolPetamburan" ;
+    rel:kodePos "11460" ;
+    rel:luasLahan "-" ;
+    rel:nama "Pura Candra Prabha Jelambar" ;
+    rel:tahunBerdiri "1983"^^xsd:gYear ;
+    rel:tipeBangunan "Temple" ;
+    rel:transportTerdekat "Halte Jelambar",
+        "JAK 04",
+        "KRL Stasiun Grogol" ;
+    rel:wilayah "JakartaBarat" ;
+    schema1:address "Jl. Indraloka Raya No.1, RT.007/RW.010, Jelambar, Kec. Grogol Petamburan, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta" ;
+    schema1:description "Pura Candra Prabha adalah satu-satunya pura Hindu besar yang terletak di wilayah Jakarta Barat, menjadikannya pusat spiritual penting bagi umat Hindu di kawasan ini. Bangunan pura ini kental dengan nuansa arsitektur tradisional Bali, ditandai dengan gerbang Candi Bentar yang megah dan ornamen ukiran khas. Selain sebagai tempat ibadah, pura ini juga aktif sebagai pusat pendidikan agama (Pasraman) untuk anak-anak serta tempat pelestarian budaya seperti latihan tari Bali dan gamelan."@id ;
+    schema1:image "https://maps.app.goo.gl/uyK3Nd8AqTDwt9C27" .
 
-# --- METADATA ---
-rj:StasiunJuanda a owl:NamedIndividual, rj:TrainStation ; rdfs:label "Stasiun Juanda (KRL)" .
-rj:StasiunJakartaKota a owl:NamedIndividual, rj:TrainStation ; rdfs:label "Stasiun Jakarta Kota (KRL)" .
-rj:StasiunMRTAsean a owl:NamedIndividual, rj:TrainStation ; rdfs:label "Stasiun MRT ASEAN" .
-rj:HalteJuanda a owl:NamedIndividual, rj:BusStop ; rdfs:label "Halte TransJakarta Juanda" .
-rj:HaltePasarBaru a owl:NamedIndividual, rj:BusStop ; rdfs:label "Halte TransJakarta Pasar Baru" .
-rj:JakartaPusat a rj:City . rj:JakartaSelatan a rj:City . rj:JakartaBarat a rj:City . rj:JakartaTimur a rj:City .
-rj:KecamatanSawahBesar a rj:District . rj:KecamatanKebayoranBaru a rj:District . rj:KecamatanTamanSari a rj:District . rj:KecamatanPuloGadung a rj:District .
-rj:Islam a rj:Religion . rj:Katolik a rj:Religion . rj:KristenProtestan a rj:Religion . 
-rj:Buddha a rj:Religion . rj:Konghucu a rj:Religion . rj:Hindu a rj:Religion .
+rel:ViharaSinTekBio a rel:TempatIbadah ;
+    rdfs:label "Vihara Sin Tek Bio"@id ;
+    rel:agama "Buddha" ;
+    rel:arsitek "None" ;
+    rel:jamOperasional "06:00 - 18:00 WIB" ;
+    rel:kapasitas 500 ;
+    rel:kecamatan "Sawah Besar" ;
+    rel:kodeCagarBudaya "KB005402" ;
+    rel:kodePos "10710" ;
+    rel:luasLahan "0.4 Hektar" ;
+    rel:nama "Vihara Sin Tek Bio" ;
+    rel:statusCagarBudaya true ;
+    rel:tahunBerdiri "1650"^^xsd:gYear ;
+    rel:tipeBangunan "Vihara" ;
+    rel:transportTerdekat "2 Juanda (TJ)",
+        "8 Juanda (TJ)",
+        "Bogor Line: Juanda (KRL)" ;
+    rel:wilayah "JakartaPusat" ;
+    schema1:address "belakang Metro Atom, Jl. Ps. Baru No.Dalam, Pasar Baru, Sawah Besar, Central Jakarta City, Jakarta 10710" ;
+    schema1:description "Vihara Sin Tek Bio atau Jin De Yuan adalah klenteng tertua di Jakarta yang dibangun pada abad ke-17. Vihara ini merupakan tempat ibadah bagi umat Buddha dan Konghucu."@id ;
+    schema1:image "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSz_A0botXUfTnlr9OZAFW5Pyxu-3IKqMnLAco4cfVOjLufajAWlDp0BZaEj6shJQM0nNsj4E48y6_qTZCpTCW0C6HuzTvtBLBb0zkzTtIzaU9fKZ8kbTQ0Gw8RqjV1tfAknBWgtqcftfn0M=w408-h306-k-no" ;
+    geo1:lat -6.161910912135903 ;
+    geo1:long 106.83332561941451 .
+

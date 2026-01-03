@@ -433,4 +433,4 @@ def get_stats():
 
 if __name__ == '__main__':
     backup_database()  # Backup otomatis saat server start
-    app.run(debug=True, port=1081)
+    app.run(debug=True, port=1083)
