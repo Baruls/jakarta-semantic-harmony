@@ -1,4 +1,4 @@
-// ===== KALENDER PAGE =====
+// ===== KALENDER PAGE - API-BASED VERSION =====
 
 const months = [
     'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
@@ -19,138 +19,92 @@ const religionStyle = {
     'Konghucu': { color: '#e67e22', icon: 'fa-vihara' }
 };
 
-// Events with religion info
-const events = [
-    // Januari 2025
-    { date: '2025-01-01', title: 'Shalat Tahun Baru', location: 'Masjid Istiqlal', agama: 'Islam' },
-    { date: '2025-01-29', title: 'Tahun Baru Imlek 2576', location: 'Vihara Sin Tek Bio', agama: 'Konghucu' },
-    
-    // Februari 2025
-    { date: '2025-02-12', title: 'Isra Mi\'raj', location: 'Masjid Istiqlal', agama: 'Islam' },
-    { date: '2025-02-15', title: 'Cap Go Meh', location: 'Vihara Sin Tek Bio', agama: 'Konghucu' },
-    
-    // Maret 2025
-    { date: '2025-03-01', title: 'Awal Ramadan 1446 H', location: 'Masjid Istiqlal', agama: 'Islam' },
-    { date: '2025-03-29', title: 'Hari Raya Nyepi', location: 'Pura Aditya Jaya', agama: 'Hindu' },
-    { date: '2025-03-30', title: 'Idul Fitri 1446 H', location: 'Masjid Istiqlal', agama: 'Islam' },
-    { date: '2025-03-31', title: 'Idul Fitri 1446 H (Hari ke-2)', location: 'Masjid Agung Al-Azhar', agama: 'Islam' },
-    
-    // April 2025
-    { date: '2025-04-18', title: 'Jumat Agung', location: 'Gereja Katedral Jakarta', agama: 'Katolik' },
-    { date: '2025-04-18', title: 'Jumat Agung', location: 'Gereja Sion', agama: 'KristenProtestan' },
-    { date: '2025-04-20', title: 'Paskah', location: 'Gereja Katedral Jakarta', agama: 'Katolik' },
-    { date: '2025-04-20', title: 'Paskah', location: 'Gereja Sion', agama: 'KristenProtestan' },
-    
-    // Mei 2025
-    { date: '2025-05-12', title: 'Hari Raya Waisak 2569 BE', location: 'Vihara Sin Tek Bio', agama: 'Buddha' },
-    { date: '2025-05-29', title: 'Kenaikan Isa Almasih', location: 'Gereja Katedral Jakarta', agama: 'Katolik' },
-    
-    // Juni 2025
-    { date: '2025-06-06', title: 'Idul Adha 1446 H', location: 'Masjid Istiqlal', agama: 'Islam' },
-    { date: '2025-06-07', title: 'Idul Adha 1446 H', location: 'Masjid Agung Al-Azhar', agama: 'Islam' },
-    { date: '2025-06-27', title: 'Tahun Baru Islam 1447 H', location: 'Masjid Istiqlal', agama: 'Islam' },
-    
-    // Juli 2025
-    { date: '2025-07-06', title: 'Hari Raya Galungan', location: 'Pura Aditya Jaya', agama: 'Hindu' },
-    { date: '2025-07-16', title: 'Hari Raya Kuningan', location: 'Pura Aditya Jaya', agama: 'Hindu' },
-    
-    // Agustus 2025
-    { date: '2025-08-17', title: 'Misa HUT RI ke-80', location: 'Gereja Katedral Jakarta', agama: 'Katolik' },
-    { date: '2025-08-17', title: 'Shalat Syukur HUT RI', location: 'Masjid Istiqlal', agama: 'Islam' },
-    
-    // September 2025
-    { date: '2025-09-05', title: 'Maulid Nabi Muhammad SAW', location: 'Masjid Istiqlal', agama: 'Islam' },
-    { date: '2025-09-05', title: 'Maulid Nabi Muhammad SAW', location: 'Masjid Agung Al-Azhar', agama: 'Islam' },
-    
-    // Oktober 2025
-    { date: '2025-10-20', title: 'Hari Raya Saraswati', location: 'Pura Aditya Jaya', agama: 'Hindu' },
-    
-    // November 2025
-    { date: '2025-11-01', title: 'Hari Raya Semua Orang Kudus', location: 'Gereja Katedral Jakarta', agama: 'Katolik' },
-    { date: '2025-11-02', title: 'Hari Arwah', location: 'Gereja Katedral Jakarta', agama: 'Katolik' },
-    
-    // Desember 2025
-    { date: '2025-12-24', title: 'Misa Malam Natal', location: 'Gereja Katedral Jakarta', agama: 'Katolik' },
-    { date: '2025-12-24', title: 'Ibadah Malam Natal', location: 'Gereja Sion', agama: 'KristenProtestan' },
-    { date: '2025-12-25', title: 'Perayaan Natal', location: 'Gereja Katedral Jakarta', agama: 'Katolik' },
-    { date: '2025-12-25', title: 'Perayaan Natal', location: 'Gereja Sion', agama: 'KristenProtestan' },
-    { date: '2025-12-31', title: 'Misa Tahun Baru', location: 'Gereja Katedral Jakarta', agama: 'Katolik' },
-    
-    // Januari 2026
-    { date: '2026-01-01', title: 'Shalat Tahun Baru', location: 'Masjid Istiqlal', agama: 'Islam' },
-    { date: '2026-01-17', title: 'Tahun Baru Imlek 2577', location: 'Vihara Sin Tek Bio', agama: 'Konghucu' },
-    
-    // Februari 2026
-    { date: '2026-02-01', title: 'Cap Go Meh', location: 'Vihara Sin Tek Bio', agama: 'Konghucu' },
-    { date: '2026-02-17', title: 'Isra Mi\'raj 1447 H', location: 'Masjid Istiqlal', agama: 'Islam' },
-    { date: '2026-02-19', title: 'Awal Ramadan 1447 H', location: 'Masjid Istiqlal', agama: 'Islam' },
-    
-    // Maret 2026
-    { date: '2026-03-17', title: 'Hari Raya Nyepi', location: 'Pura Aditya Jaya', agama: 'Hindu' },
-    { date: '2026-03-20', title: 'Idul Fitri 1447 H', location: 'Masjid Istiqlal', agama: 'Islam' },
-    { date: '2026-03-21', title: 'Idul Fitri 1447 H (Hari ke-2)', location: 'Masjid Agung Al-Azhar', agama: 'Islam' },
-    
-    // April 2026
-    { date: '2026-04-03', title: 'Jumat Agung', location: 'Gereja Katedral Jakarta', agama: 'Katolik' },
-    { date: '2026-04-03', title: 'Jumat Agung', location: 'Gereja Sion', agama: 'KristenProtestan' },
+// Events - loaded dynamically from backend API
+let events = [];
+let eventsCache = {}; // Cache untuk mengurangi API calls
+
+// Fallback data jika API gagal (minimal events)
+const fallbackEvents = [
+    { date: '2026-01-27', title: 'Isra Mi\'raj 1447 H', location: 'Masjid Istiqlal', agama: 'Islam' },
+    { date: '2026-02-17', title: 'Tahun Baru Imlek 2577', location: 'Vihara Sin Tek Bio', agama: 'Konghucu' },
+    { date: '2026-02-18', title: 'Awal Ramadan 1447 H', location: 'Masjid Istiqlal', agama: 'Islam' },
+    { date: '2026-03-19', title: 'Idul Fitri 1447 H', location: 'Masjid Istiqlal', agama: 'Islam' },
     { date: '2026-04-05', title: 'Paskah', location: 'Gereja Katedral Jakarta', agama: 'Katolik' },
-    { date: '2026-04-05', title: 'Paskah', location: 'Gereja Sion', agama: 'KristenProtestan' },
-    
-    // Mei 2026
-    { date: '2026-05-01', title: 'Hari Raya Waisak 2570 BE', location: 'Vihara Sin Tek Bio', agama: 'Buddha' },
-    { date: '2026-05-14', title: 'Kenaikan Isa Almasih', location: 'Gereja Katedral Jakarta', agama: 'Katolik' },
-    { date: '2026-05-27', title: 'Idul Adha 1447 H', location: 'Masjid Istiqlal', agama: 'Islam' },
-    
-    // Juni 2026
-    { date: '2026-06-16', title: 'Tahun Baru Islam 1448 H', location: 'Masjid Istiqlal', agama: 'Islam' },
-    { date: '2026-06-25', title: 'Hari Raya Galungan', location: 'Pura Aditya Jaya', agama: 'Hindu' },
-    
-    // Juli 2026
-    { date: '2026-07-05', title: 'Hari Raya Kuningan', location: 'Pura Aditya Jaya', agama: 'Hindu' },
-    
-    // Agustus 2026
-    { date: '2026-08-17', title: 'Misa HUT RI ke-81', location: 'Gereja Katedral Jakarta', agama: 'Katolik' },
-    { date: '2026-08-17', title: 'Shalat Syukur HUT RI', location: 'Masjid Istiqlal', agama: 'Islam' },
-    { date: '2026-08-25', title: 'Maulid Nabi Muhammad SAW', location: 'Masjid Istiqlal', agama: 'Islam' },
-    
-    // September 2026
-    { date: '2026-09-10', title: 'Hari Raya Saraswati', location: 'Pura Aditya Jaya', agama: 'Hindu' },
-    
-    // Oktober 2026
-    { date: '2026-10-04', title: 'Hari Raya Galungan', location: 'Pura Aditya Jaya', agama: 'Hindu' },
-    { date: '2026-10-14', title: 'Hari Raya Kuningan', location: 'Pura Aditya Jaya', agama: 'Hindu' },
-    
-    // November 2026
-    { date: '2026-11-01', title: 'Hari Raya Semua Orang Kudus', location: 'Gereja Katedral Jakarta', agama: 'Katolik' },
-    { date: '2026-11-02', title: 'Hari Arwah', location: 'Gereja Katedral Jakarta', agama: 'Katolik' },
-    
-    // Desember 2026
-    { date: '2026-12-24', title: 'Misa Malam Natal', location: 'Gereja Katedral Jakarta', agama: 'Katolik' },
-    { date: '2026-12-24', title: 'Ibadah Malam Natal', location: 'Gereja Sion', agama: 'KristenProtestan' },
-    { date: '2026-12-25', title: 'Perayaan Natal', location: 'Gereja Katedral Jakarta', agama: 'Katolik' },
-    { date: '2026-12-25', title: 'Perayaan Natal', location: 'Gereja Sion', agama: 'KristenProtestan' },
-    { date: '2026-12-31', title: 'Misa Tahun Baru', location: 'Gereja Katedral Jakarta', agama: 'Katolik' },
-    
-    // Januari 2027
-    { date: '2027-01-01', title: 'Shalat Tahun Baru', location: 'Masjid Istiqlal', agama: 'Islam' },
-    { date: '2027-01-06', title: 'Tahun Baru Imlek 2578', location: 'Vihara Sin Tek Bio', agama: 'Konghucu' }
+    { date: '2026-12-25', title: 'Perayaan Natal', location: 'Gereja Katedral Jakarta', agama: 'Katolik' }
 ];
 
-document.addEventListener('DOMContentLoaded', function() {
+// Load events dari backend API
+async function loadCalendarEvents(year) {
+    // Check cache dulu
+    if (eventsCache[year]) {
+        console.log(`✅ Using cached events for ${year}`);
+        return eventsCache[year];
+    }
+    
+    try {
+        const response = await fetch(`/api/calendar/${year}`);
+        if (!response.ok) throw new Error('API request failed');
+        
+        const data = await response.json();
+        if (data.success && data.events) {
+            console.log(`✅ Loaded ${data.events.length} events for ${year} from API`);
+            eventsCache[year] = data.events;
+            return data.events;
+        }
+    } catch (error) {
+        console.warn('⚠️ Failed to load events from API, using fallback:', error);
+    }
+    
+    // Fallback ke data manual
+    return fallbackEvents.filter(e => e.date.startsWith(year.toString()));
+}
+
+// Initialize calendar saat halaman load
+document.addEventListener('DOMContentLoaded', async function() {
+    console.log('📅 Initializing calendar...');
+    
+    // Show loading state
+    const calendarGrid = document.querySelector('.calendar-grid');
+    const upcomingContainer = document.getElementById('upcomingEvents');
+    if (calendarGrid) {
+        calendarGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 20px;">Loading...</div>';
+    }
+    if (upcomingContainer) {
+        upcomingContainer.innerHTML = '<p style="color: #6c757d; text-align: center;">Memuat acara...</p>';
+    }
+    
+    // Load events untuk tahun sekarang
+    events = await loadCalendarEvents(currentYear);
+    console.log(`✅ Loaded ${events.length} events for ${currentYear}`);
+    
+    // Pre-load events untuk tahun depan juga jika Desember
+    if (currentMonth >= 11) {
+        const nextYearEvents = await loadCalendarEvents(currentYear + 1);
+        events = [...events, ...nextYearEvents];
+    }
+    
     renderCalendar();
     setupNavigation();
+    setupEventsNavigation();
     renderUpcomingEvents();
 });
 
-function renderCalendar() {
+async function renderCalendar() {
     const monthLabel = document.getElementById('currentMonth');
     monthLabel.textContent = `${months[currentMonth]} ${currentYear}`;
     
     const calendarGrid = document.querySelector('.calendar-grid');
     
-    // Clear previous days (except headers)
-    const existingDays = calendarGrid.querySelectorAll('.calendar-day');
-    existingDays.forEach(day => day.remove());
+    // Clear semua konten (termasuk loading state) kecuali header
+    const headers = calendarGrid.querySelectorAll('.calendar-header');
+    calendarGrid.innerHTML = '';
+    headers.forEach(header => calendarGrid.appendChild(header));
+    
+    // Load events untuk tahun ini jika belum ada
+    if (!eventsCache[currentYear]) {
+        const yearEvents = await loadCalendarEvents(currentYear);
+        events = [...events.filter(e => !e.date.startsWith(currentYear.toString())), ...yearEvents];
+    }
     
     // Get first day of month and total days
     const firstDay = new Date(currentYear, currentMonth, 1).getDay();
@@ -224,23 +178,80 @@ function setupNavigation() {
     const prevBtn = document.getElementById('prevMonth');
     const nextBtn = document.getElementById('nextMonth');
     
-    prevBtn.addEventListener('click', function() {
+    prevBtn.addEventListener('click', async function() {
         currentMonth--;
         if (currentMonth < 0) {
             currentMonth = 11;
             currentYear--;
+            // Load events untuk tahun baru ini
+            if (!eventsCache[currentYear]) {
+                const yearEvents = await loadCalendarEvents(currentYear);
+                events = [...events, ...yearEvents];
+            }
         }
-        renderCalendar();
+        await renderCalendar();
     });
     
-    nextBtn.addEventListener('click', function() {
+    nextBtn.addEventListener('click', async function() {
         currentMonth++;
         if (currentMonth > 11) {
             currentMonth = 0;
             currentYear++;
+            // Load events untuk tahun baru ini
+            if (!eventsCache[currentYear]) {
+                const yearEvents = await loadCalendarEvents(currentYear);
+                events = [...events, ...yearEvents];
+            }
         }
-        renderCalendar();
+        await renderCalendar();
     });
+}
+
+// --- UPCOMING EVENTS WITH PAGINATION ---
+let currentEventPage = 0;
+const EVENTS_PER_PAGE = 5;
+
+function setupEventsNavigation() {
+    const prevBtn = document.getElementById('prevEvents');
+    const nextBtn = document.getElementById('nextEvents');
+    
+    if (prevBtn) {
+        prevBtn.addEventListener('click', function() {
+            if (currentEventPage > 0) {
+                currentEventPage--;
+                renderUpcomingEvents();
+            }
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', function() {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const totalEvents = events.filter(e => new Date(e.date) >= today).length;
+            const totalPages = Math.ceil(totalEvents / EVENTS_PER_PAGE);
+            
+            if (currentEventPage < totalPages - 1) {
+                currentEventPage++;
+                renderUpcomingEvents();
+            }
+        });
+    }
+}
+
+function updateEventsNavigationButtons(currentPage, totalPages) {
+    const prevBtn = document.getElementById('prevEvents');
+    const nextBtn = document.getElementById('nextEvents');
+    
+    if (!prevBtn || !nextBtn) return;
+    
+    prevBtn.disabled = currentPage === 0;
+    nextBtn.disabled = currentPage >= totalPages - 1 || totalPages === 0;
+    
+    prevBtn.style.opacity = prevBtn.disabled ? '0.3' : '1';
+    prevBtn.style.cursor = prevBtn.disabled ? 'not-allowed' : 'pointer';
+    nextBtn.style.opacity = nextBtn.disabled ? '0.3' : '1';
+    nextBtn.style.cursor = nextBtn.disabled ? 'not-allowed' : 'pointer';
 }
 
 function renderUpcomingEvents() {
@@ -248,28 +259,34 @@ function renderUpcomingEvents() {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     
-    // Filter upcoming events
-    const upcomingEvents = events
+    // Filter all upcoming events
+    const allUpcomingEvents = events
         .filter(event => new Date(event.date) >= today)
-        .sort((a, b) => new Date(a.date) - new Date(b.date))
-        .slice(0, 5);
+        .sort((a, b) => new Date(a.date) - new Date(b.date));
     
-    if (upcomingEvents.length === 0) {
+    if (allUpcomingEvents.length === 0) {
         container.innerHTML = '<p style="color: #6c757d; text-align: center;">Tidak ada acara mendatang</p>';
+        updateEventsNavigationButtons(0, 0);
         return;
     }
+    
+    // Calculate pagination
+    const totalPages = Math.ceil(allUpcomingEvents.length / EVENTS_PER_PAGE);
+    const startIdx = currentEventPage * EVENTS_PER_PAGE;
+    const endIdx = Math.min(startIdx + EVENTS_PER_PAGE, allUpcomingEvents.length);
+    const upcomingEvents = allUpcomingEvents.slice(startIdx, endIdx);
     
     container.innerHTML = upcomingEvents.map(event => {
         const date = new Date(event.date);
         const day = date.getDate();
-        const month = months[date.getMonth()].substring(0, 3).toUpperCase();
+        const month = months[date.getMonth()].substring(0, 3);
         const style = religionStyle[event.agama] || { color: '#1a3a5c', icon: 'fa-calendar' };
         
         return `
             <div class="event-card">
                 <div class="event-date" style="background: ${style.color};">
                     <span class="day">${String(day).padStart(2, '0')}</span>
-                    <span class="month">${month}</span>
+                    <span class="month">${month.toUpperCase()}</span>
                 </div>
                 <div class="event-info">
                     <h4>
@@ -281,6 +298,9 @@ function renderUpcomingEvents() {
             </div>
         `;
     }).join('');
+    
+    // Update navigation buttons
+    updateEventsNavigationButtons(currentEventPage, totalPages);
 }
 
 function showEventsForDate(dateStr) {

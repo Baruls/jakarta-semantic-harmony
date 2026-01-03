@@ -187,9 +187,11 @@ rel:PuraAdityaJaya a rel:TempatIbadah ;
     rel:jamOperasional "08:00 - 16:00 WIB" ;
     rel:kapasitas 300 ;
     rel:kecamatan "Pulo Gadung" ;
+    rel:kodeCagarBudaya "None" ;
     rel:kodePos "13220" ;
     rel:luasLahan "0.6 Hektar" ;
     rel:nama "Pura Adhitya Jaya" ;
+    rel:statusCagarBudaya false ;
     rel:tahunBerdiri "1972"^^xsd:gYear ;
     rel:tipeBangunan "Temple" ;
     rel:transportTerdekat "10 Pemuda Pramuka (TJ)",
@@ -207,10 +209,12 @@ rel:PuraCandraPrabhaJelambar a rel:TempatIbadah ;
     rel:arsitek "-" ;
     rel:jamOperasional "24 Jam" ;
     rel:kapasitas 1000 ;
-    rel:kecamatan "KecamatanGrogolPetamburan" ;
+    rel:kecamatan "Grogol Petamburan" ;
+    rel:kodeCagarBudaya "None" ;
     rel:kodePos "11460" ;
     rel:luasLahan "-" ;
     rel:nama "Pura Candra Prabha Jelambar" ;
+    rel:statusCagarBudaya false ;
     rel:tahunBerdiri "1983"^^xsd:gYear ;
     rel:tipeBangunan "Temple" ;
     rel:transportTerdekat "Halte Jelambar",
@@ -219,7 +223,9 @@ rel:PuraCandraPrabhaJelambar a rel:TempatIbadah ;
     rel:wilayah "JakartaBarat" ;
     schema1:address "Jl. Indraloka Raya No.1, RT.007/RW.010, Jelambar, Kec. Grogol Petamburan, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta" ;
     schema1:description "Pura Candra Prabha adalah satu-satunya pura Hindu besar yang terletak di wilayah Jakarta Barat, menjadikannya pusat spiritual penting bagi umat Hindu di kawasan ini. Bangunan pura ini kental dengan nuansa arsitektur tradisional Bali, ditandai dengan gerbang Candi Bentar yang megah dan ornamen ukiran khas. Selain sebagai tempat ibadah, pura ini juga aktif sebagai pusat pendidikan agama (Pasraman) untuk anak-anak serta tempat pelestarian budaya seperti latihan tari Bali dan gamelan."@id ;
-    schema1:image "https://maps.app.goo.gl/uyK3Nd8AqTDwt9C27" .
+    schema1:image "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSw8UMx8NKFnHZunv4SQo6dn-nDLU3t-Ii4OLlYj-I8nx5Qxlklcihn64ZuhESBt7roJ8jCVC6rZDdzSDoel_tlGpOFhreAfhGVsICPRyfX0ed7Iqr01v64mGGnQwdQZXrZMpYvK=w408-h544-k-no" ;
+    geo1:lat -6.157041896927975 ;
+    geo1:long 106.77877798345428 .
 
 rel:ViharaSinTekBio a rel:TempatIbadah ;
     rdfs:label "Vihara Sin Tek Bio"@id ;

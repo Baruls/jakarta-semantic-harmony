@@ -12,7 +12,7 @@
         <div class="calendar-wrapper">
             <div class="calendar-header">
                 <button id="prevMonth"><i class="fas fa-chevron-left"></i></button>
-                <h2 id="currentMonth">Desember 2025</h2>
+                <h2 id="currentMonth">Januari 2026</h2>
                 <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
             </div>
             <div class="calendar-grid">
@@ -28,35 +28,46 @@
         </div>
         
         <div class="events-panel">
-            <h3>Acara Mendatang</h3>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h3 style="margin: 0;">Acara Mendatang</h3>
+                <div class="events-navigation">
+                    <button id="prevEvents" style="background: none; border: none; cursor: pointer; font-size: 18px; padding: 5px 10px; color: #1a3a5c;">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button id="nextEvents" style="background: none; border: none; cursor: pointer; font-size: 18px; padding: 5px 10px; color: #1a3a5c;">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
             <div class="upcoming-events" id="upcomingEvents">
+                <!-- Events will be dynamically loaded from kalender.js -->
                 <div class="event-card">
                     <div class="event-date">
-                        <span class="day">25</span>
-                        <span class="month">Des</span>
-                    </div>
-                    <div class="event-info">
-                        <h4>Perayaan Natal</h4>
-                        <p><i class="fas fa-map-marker-alt"></i> Gereja Katedral Jakarta</p>
-                    </div>
-                </div>
-                <div class="event-card">
-                    <div class="event-date">
-                        <span class="day">31</span>
-                        <span class="month">Des</span>
-                    </div>
-                    <div class="event-info">
-                        <h4>Misa Tahun Baru</h4>
-                        <p><i class="fas fa-map-marker-alt"></i> Gereja Katedral Jakarta</p>
-                    </div>
-                </div>
-                <div class="event-card">
-                    <div class="event-date">
-                        <span class="day">01</span>
+                        <span class="day">27</span>
                         <span class="month">Jan</span>
                     </div>
                     <div class="event-info">
-                        <h4>Shalat Tahun Baru</h4>
+                        <h4>Isra Mi'raj 1447 H</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> Masjid Istiqlal</p>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">17</span>
+                        <span class="month">Feb</span>
+                    </div>
+                    <div class="event-info">
+                        <h4>Tahun Baru Imlek 2577</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> Vihara Sin Tek Bio</p>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">18</span>
+                        <span class="month">Feb</span>
+                    </div>
+                    <div class="event-info">
+                        <h4>Awal Ramadan 1447 H</h4>
                         <p><i class="fas fa-map-marker-alt"></i> Masjid Istiqlal</p>
                     </div>
                 </div>

@@ -1,15 +1,12 @@
-from app import app, backup_database
+from app import app
 import os
 
 if __name__ == '__main__':
     print("="*60)
-    print("🚀 Jakarta Semantic Harmony - Production Mode")
+    print("🚀 Jakarta Semantic Harmony - Production Mode (Pure TTL)")
     print("="*60)
     
-    # Backup database saat start
-    backup_database()
-    
-    print("✅ Server running on http://0.0.0.0:1083")
+    print("✅ Server running on http://0.0.0.0:1081")
     print("📍 Accessible from local network & tunnels (playit.gg)")
     print("🛑 Press CTRL+C to stop")
     print("="*60)
