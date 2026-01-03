@@ -3,7 +3,7 @@ from rdflib import Graph, Namespace, Literal, URIRef
 from rdflib.namespace import RDF, RDFS, XSD
 import os
 import shutil
-import requests
+# import requests  # Optional: untuk Calendarific API (belum aktif)
 from datetime import datetime
 from functools import wraps
 # hijri-converter not available, will use manual data instead
@@ -563,21 +563,23 @@ def get_calendar_events(year):
         events = get_indonesian_holidays(year)
         
         # Optional: Jika punya API key Calendarific, bisa fetch dari sana
-        if CALENDARIFIC_API_KEY:
-            try:
-                response = requests.get(CALENDARIFIC_URL, params={
-                    'api_key': CALENDARIFIC_API_KEY,
-                    'country': 'ID',
-                    'year': year,
-                    'type': 'national,religious'
-                }, timeout=5)
-                
-                if response.status_code == 200:
-                    api_data = response.json()
-                    # Merge dengan data manual (prioritas data manual)
-                    print(f"✅ Fetched {len(api_data.get('response', {}).get('holidays', []))} holidays from Calendarific")
-            except Exception as e:
-                print(f"⚠️ Calendarific API error: {e}")
+        # Requires 'requests' package (currently commented out in imports)
+        # if CALENDARIFIC_API_KEY:
+        #     try:
+        #         import requests
+        #         response = requests.get(CALENDARIFIC_URL, params={
+        #             'api_key': CALENDARIFIC_API_KEY,
+        #             'country': 'ID',
+        #             'year': year,
+        #             'type': 'national,religious'
+        #         }, timeout=5)
+        #         
+        #         if response.status_code == 200:
+        #             api_data = response.json()
+        #             # Merge dengan data manual (prioritas data manual)
+        #             print(f"✅ Fetched {len(api_data.get('response', {}).get('holidays', []))} holidays from Calendarific")
+        #     except Exception as e:
+        #         print(f"⚠️ Calendarific API error: {e}")
         
         return jsonify({
             'success': True,
